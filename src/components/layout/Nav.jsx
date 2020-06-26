@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import LoginPage from "../../pages/LoginPage";
 import LOGOw from "../../assets/LOGOw.png";
 
 const Nav = () => {
@@ -22,7 +24,7 @@ const Nav = () => {
               <a href='#!'>Movies</a>
             </li>
             <li>
-              <a href='#!'>Login</a>
+              <Link to='/login'>Login</Link>
             </li>
           </ul>
         </div>
