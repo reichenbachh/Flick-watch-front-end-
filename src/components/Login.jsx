@@ -1,16 +1,18 @@
 import React from "react";
-import LOGOw from "../assets/LOGOw.png";
+import { connect } from "react-redux";
+import { setFormType } from "../actions/authActions";
 
-const Login = () => {
+const Login = ({ setFormType }) => {
+  const fStateSign = "SignUp";
+  const onLogin = () => {
+    setFormType(fStateSign);
+  };
   return (
-    <div className='login-container'>
-      <div className='logo-login'>
-        <img src={LOGOw} alt='' srcset='' />
-      </div>
+    <div className='login-wrapper'>
       <div id='login'>
         <div className='login-from'>
           <div className='input-area'>
-            <h1>Sign In</h1>
+            <h4>Sign In</h4>
             <div className='username'>
               <input type='text' placeholder='Username' required />
             </div>
@@ -26,8 +28,14 @@ const Login = () => {
             <span>Remember me</span>
           </div>
           <div className='links'>
-            <a href=''>Sign Up?</a>
-            <a href=''>Forgot Password?</a>
+            <div>
+              <a onClick={onLogin} a href='#!'>
+                Sign Up?
+              </a>
+            </div>
+            <div>
+              <a href='#!'>Forgot Password?</a>
+            </div>
           </div>
         </div>
       </div>
@@ -35,4 +43,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default connect(null, { setFormType })(Login);
