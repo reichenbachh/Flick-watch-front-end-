@@ -1,5 +1,8 @@
 import React from "react";
-const ForgetPassword = () => {
+const ForgetPassword = ({ prevStep }) => {
+  const toLogin = () => {
+    prevStep();
+  };
   return (
     <div className='forgetPass'>
       <div className='forgetPassCard'>
@@ -9,6 +12,11 @@ const ForgetPassword = () => {
         </div>
         <div className='submitPass'>
           <button type='submit'>Reset Password</button>
+        </div>
+        <div className='links'>
+          <a href='#1' onClick={toLogin}>
+            Log In?{" "}
+          </a>
         </div>
       </div>
     </div>

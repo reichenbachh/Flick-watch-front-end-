@@ -24,7 +24,7 @@ const Nav = () => {
               <a href='#!'>Movies</a>
             </li>
             <li>
-              <Link to='/login'>Login</Link>
+              <Link to='/login'>Sign Up?</Link>
             </li>
           </ul>
         </div>

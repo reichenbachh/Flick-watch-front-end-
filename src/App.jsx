@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "./pages/Home";
-import LoginPage from "./pages/LoginPage";
+import LoginArea from "./pages/LoginArea";
 import { Provider } from "react-redux";
 import store from "./store";
 import "./App.css";
@@ -13,7 +13,7 @@ function App() {
         <div className='App'>
           <Switch>
             <Route exact path='/' component={Home} />
-            <Route exact path='/login' component={LoginPage} />
+            <Route exact path='/login' component={LoginArea} />
           </Switch>
         </div>
       </Router>
