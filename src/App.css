@@ -3,6 +3,7 @@
 :root {
   --primary-color: #c60024;
   --secondary-color: #fff;
+  --tetiary-color: #343434;
 }
 * {
   margin: 0;
@@ -57,11 +58,13 @@ input::-webkit-input-placeholder {
 }
 
 .landing-text {
-  height: 70%;
-  flex-direction: column;
+  overflow: hidden;
+  position: absolute;
+  width: 100%;
+  height: 60%;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: center; /*centers items on the line (the x-axis by default)*/
+  align-items: center; /*centers items on the cross-axis (y by default)*/
 }
 .landing-text h1 {
   color: var(--secondary-color);
@@ -235,5 +238,22 @@ span {
 
 .forgetPass h4 {
   margin: 0.5rem;
+  color: var(--secondary-color);
+}
+
+.Movie-card img {
+  width: 100%;
+}
+
+.Movie-card {
+  background: var(--tetiary-color);
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.Movie-card {
   color: var(--secondary-color);
 }
