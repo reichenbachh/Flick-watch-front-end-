@@ -246,14 +246,62 @@ span {
 }
 
 .Movie-card {
+  margin: 1rem;
   background: var(--tetiary-color);
-  width: 300px;
+  width: 200px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
 
 .Movie-card {
   color: var(--secondary-color);
+}
+.Movie-card .name {
+  font-size: 11px;
+}
+.details {
+  display: flex;
+  justify-content: space-around;
+}
+details div {
+  padding: 0.3rem;
+}
+.details p {
+  font-size: 9px;
+}
+.deText div {
+  padding: 0.2rem;
+}
+.bar {
+  width: 50px;
+}
+
+.rate {
+  color: var(--primary-color);
+}
+.rating p {
+  margin-bottom: 0.5rem;
+}
+#trending_area {
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url("./assets/trendingbg.jpg") no-repeat center center/cover;
+  height: 100%;
+  overflow: hidden;
+  background-attachment: fixed;
+}
+
+#trending_area .content {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.title h1 {
+  color: var(--secondary-color);
+  padding: 1rem;
+  margin: 1rem;
+}
+
+.title h1 .title-span {
+  color: var(--primary-color);
 }

@@ -1,4 +1,4 @@
-import { SET_FORM_TYPE } from "../actions/types";
+import {} from "../actions/types";
 
 const initialState = {
   formType: "signIn",
@@ -6,7 +6,7 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case SET_FORM_TYPE:
+    case 3:
       return {
         ...state,
         formType: action.payload,
