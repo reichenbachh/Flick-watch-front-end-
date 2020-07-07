@@ -11,7 +11,7 @@ export default (state = initialState, action) => {
     case GET_TRENDING:
       return {
         ...state,
-        trending: action.payload.results,
+        trending: action.payload,
         loading: false,
       };
     default:

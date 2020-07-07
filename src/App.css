@@ -290,7 +290,8 @@ details div {
   background-attachment: fixed;
 }
 
-#trending_area .content {
+#trending_area .content,
+#trending_area_loader .content {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -304,4 +305,11 @@ details div {
 
 .title h1 .title-span {
   color: var(--primary-color);
+}
+
+#trending_area_loader {
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url("./assets/trendingbg.jpg") no-repeat center center/cover;
+  height: 100vh;
+  overflow: hidden;
 }

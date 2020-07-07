@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import TrendingItem from "./TrendingItem";
 import Nav from "../layout/Nav";
 import { getTrending } from "../../actions/movieActions";
+import Preloader from "../layout/Preloader";
 
 const TrendingArea = ({ movie: { loading, trending }, getTrending }) => {
   useEffect(() => {
@@ -12,9 +13,22 @@ const TrendingArea = ({ movie: { loading, trending }, getTrending }) => {
   }, []);
 
   if (loading || trending === null) {
-    return <h1>Loading</h1>;
+    return (
+      <div id='trending_area_loader'>
+        <Nav />
+        <div className='title'>
+          <h1>
+            Trending <span className='title-span'>Global</span>
+          </h1>
+          <div className='content'>
+            <Preloader />
+          </div>
+        </div>
+      </div>
+    );
   } else {
     console.log(trending);
+    const { page, pages_total, pages_results } = trending;
     return (
       <div id='trending_area'>
         <Nav />
@@ -24,7 +38,7 @@ const TrendingArea = ({ movie: { loading, trending }, getTrending }) => {
           </h1>
         </div>
         <div className='content'>
-          {trending.map((trend) => (
+          {trending.results.map((trend) => (
             <TrendingItem trend={trend} key={trend.id} />
           ))}
         </div>
