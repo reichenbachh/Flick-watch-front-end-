@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import TrendingItem from "./TrendingItem";
+import PaginateLinks from "../layout/PaginateLinks";
 import Nav from "../layout/Nav";
 import { getTrending } from "../../actions/movieActions";
 import Preloader from "../layout/Preloader";
@@ -42,6 +43,7 @@ const TrendingArea = ({ movie: { loading, trending }, getTrending }) => {
             <TrendingItem trend={trend} key={trend.id} />
           ))}
         </div>
+        <PaginateLinks />
       </div>
     );
   }
