@@ -1,7 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
-import { getNextPage, getPrevPage } from "../../actions/movieActions";
-const PaginateLinks = ({ movie: { trending }, getPrevPage, getNextPage }) => {
+import { getNextPage, getPrevPage } from "../../actions/TrendingActions";
+const PaginateLinks = ({
+  trending: { trending },
+  getPrevPage,
+  getNextPage,
+}) => {
   let { page, total_pages } = trending;
   let nextPage = page + 1;
   let prevPage = page - 1;
@@ -44,7 +48,7 @@ const PaginateLinks = ({ movie: { trending }, getPrevPage, getNextPage }) => {
 };
 
 const mapToStateProps = (state) => ({
-  movie: state.movie,
+  trending: state.trending,
 });
 export default connect(mapToStateProps, { getNextPage, getPrevPage })(
   PaginateLinks

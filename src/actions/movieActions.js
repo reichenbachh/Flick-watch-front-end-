@@ -1,62 +1,20 @@
-import {
-  GET_TRENDING,
-  SET_LOADING,
-  GET_ERROR,
-  GET_NEXT_PAGE,
-  GET_PREV_PAGE,
-} from "./types";
+import { SET_ERROR, GET_UPCOMING_MOVIES } from "./types";
 import axios from "axios";
 
 //Actions
-export const getTrending = () => async (dispatch) => {
-  //Fetch Trending List from server
+export const getUpcomingMovies = () => async (dispatch) => {
+  //Fetch Upcoming movie List from server
   try {
     const res = await axios.get(
-      `https://api.themoviedb.org/3/trending/all/day?api_key=${process.env.REACT_APP_TMDB_KEY}`
+      `https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US`
     );
     dispatch({
-      type: GET_TRENDING,
+      type: GET_UPCOMING_MOVIES,
       payload: res.data,
     });
   } catch (error) {
     dispatch({
-      type: GET_ERROR,
-      payload: error,
-    });
-  }
-};
-
-export const getNextPage = (nextPage) => async (dispatch) => {
-  //Fetch Trending List from server
-  try {
-    const res = await axios.get(
-      `https://api.themoviedb.org/3/trending/all/day?api_key=${process.env.REACT_APP_TMDB_KEY}&page=${nextPage}`
-    );
-    dispatch({
-      type: GET_NEXT_PAGE,
-      payload: res.data,
-    });
-  } catch (error) {
-    dispatch({
-      type: GET_ERROR,
-      payload: error,
-    });
-  }
-};
-
-export const getPrevPage = (prevPage) => async (dispatch) => {
-  //Fetch Trending List from server
-  try {
-    const res = await axios.get(
-      `https://api.themoviedb.org/3/trending/all/day?api_key=${process.env.REACT_APP_TMDB_KEY}&page=${prevPage}`
-    );
-    dispatch({
-      type: GET_PREV_PAGE,
-      payload: res.data,
-    });
-  } catch (error) {
-    dispatch({
-      type: GET_ERROR,
+      type: SET_ERROR,
       payload: error,
     });
   }

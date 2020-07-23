@@ -1,15 +1,14 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import TrendingItem from "./TrendingItem";
+import Card from "../layout/Card";
 import PaginateLinks from "../layout/PaginateLinks";
 import Nav from "../layout/Nav";
-import { getTrending } from "../../actions/movieActions";
+import { getTrending } from "../../actions/TrendingActions";
 import Preloader from "../layout/Preloader";
 
-const TrendingArea = ({ movie: { loading, trending }, getTrending }) => {
+const TrendingArea = ({ trending: { loading, trending }, getTrending }) => {
   useEffect(() => {
     getTrending();
-    console.log(getTrending);
     //eslint-disable-next-line
   }, []);
 
@@ -29,7 +28,6 @@ const TrendingArea = ({ movie: { loading, trending }, getTrending }) => {
     );
   } else {
     console.log(trending);
-    const { page, pages_total, pages_results } = trending;
     return (
       <div id='trending_area'>
         <Nav />
@@ -39,8 +37,8 @@ const TrendingArea = ({ movie: { loading, trending }, getTrending }) => {
           </h1>
         </div>
         <div className='content'>
-          {trending.results.map((trend) => (
-            <TrendingItem trend={trend} key={trend.id} />
+          {trending.results.map((data) => (
+            <Card data={data} key={data.id} />
           ))}
         </div>
         <PaginateLinks />
@@ -50,7 +48,7 @@ const TrendingArea = ({ movie: { loading, trending }, getTrending }) => {
 };
 
 const mapStateToProps = (state) => ({
-  movie: state.movie,
+  trending: state.trending,
 });
 
 export default connect(mapStateToProps, { getTrending })(TrendingArea);

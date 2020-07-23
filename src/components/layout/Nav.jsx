@@ -20,7 +20,7 @@ const Nav = () => {
               <a href='#!'>Tv Shows</a>
             </li>
             <li>
-              <a href='#!'>Movies</a>
+              <Link to='/movies'>Movies</Link>
             </li>
             <li>
               <Link to='/login'>Sign Up?</Link>

@@ -1,15 +1,14 @@
 import React from "react";
 import login_bg from "../../assets/login_bg.jpg";
-const TrendingItem = ({ trend }) => {
+const Card = ({ data }) => {
   const {
     media_type,
     original_language,
     title,
     vote_average,
-    backdrop_path,
     release_date,
     poster_path,
-  } = trend;
+  } = data;
   return (
     <div className='Movie-card'>
       <div className='card-img'>
@@ -43,4 +42,4 @@ const TrendingItem = ({ trend }) => {
   );
 };
 
-export default TrendingItem;
+export default Card;

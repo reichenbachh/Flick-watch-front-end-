@@ -283,8 +283,9 @@ details div {
   margin-bottom: 0.5rem;
 }
 #trending_area {
-  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-    url("./assets/trendingbg.jpg") no-repeat center center/cover;
+  /* background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url("./assets/trendingbg.jpg") no-repeat center center/cover; */
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)) #282c35;
   height: 100%;
   overflow: hidden;
   background-attachment: fixed;
@@ -302,6 +303,19 @@ details div {
   flex-wrap: wrap;
 }
 
+#movie_area {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)) #262335;
+  min-height: 100vh;
+  background-attachment: fixed;
+}
+.content-scroll {
+  display: flex;
+  overflow-x: auto;
+}
+.upcoming-scroll {
+  margin: 1rem;
+  padding: 1rem;
+}
 .title h1 {
   color: var(--secondary-color);
   padding: 1rem;
@@ -313,8 +327,9 @@ details div {
 }
 
 #trending_area_loader {
-  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-    url("./assets/trendingbg.jpg") no-repeat center center/cover;
+  /* background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url("./assets/trendingbg.jpg") no-repeat center center/cover; */
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)) #282c35;
   height: 100vh;
   overflow: hidden;
 }

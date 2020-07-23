@@ -1,9 +1,11 @@
 import { combineReducers } from "redux";
 
 import authReducer from "./authReducer";
-import movieReducer from "./movieReducer";
+import TrendingReducer from "./TrendingReducer";
+import MovieReducer from "./MovieReducer";
 
 export default combineReducers({
   auth: authReducer,
-  movie: movieReducer,
+  trending: TrendingReducer,
+  movie: MovieReducer,
 });
