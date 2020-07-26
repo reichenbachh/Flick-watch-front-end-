@@ -1,10 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Krona+One&display=swap");
-
+/* Root varaibles */
 :root {
   --primary-color: #c60024;
   --secondary-color: #fff;
   --tetiary-color: #343434;
 }
+/* Css Reset */
 * {
   margin: 0;
   padding: 0;
@@ -241,47 +242,60 @@ span {
   color: var(--secondary-color);
 }
 
+/* Movie Page and Card Styling */
 .Movie-card img {
   width: 100%;
 }
 
-.Movie-card {
+.Movie-card,
+.Movie-card-scroll {
   margin: 1rem;
   background: var(--tetiary-color);
   width: 200px;
   display: flex;
   flex-direction: column;
-}
-
-.Movie-card {
   color: var(--secondary-color);
 }
-.Movie-card .name {
+.Movie-card .name,
+.Movie-card-scroll .name {
   font-size: 11px;
 }
-.details {
+.Movie-card .details,
+.Movie-card-scroll .details {
   display: flex;
   justify-content: space-around;
 }
-details div {
+.Movie-card details div,
+.Movie-card-scroll details div {
   padding: 0.3rem;
 }
-.details p {
+.Movie-card .details p,
+.Movie-card-scroll .details p {
   font-size: 9px;
 }
-.deText div {
+.Movie-card .deText div,
+.Movie-card-scroll .deText div {
   padding: 0.2rem;
 }
-.bar {
+.Movie-card .bar {
   width: 50px;
 }
 
-.rate {
+.Movie-card .rate,
+.Movie-card-scroll .rate {
   color: var(--primary-color);
 }
-.rating p {
+.Movie-card .rating p,
+.Movie-card-scroll .rating p {
   margin-bottom: 0.5rem;
 }
+
+/* Movie card scroll styling */
+.Movie-card-scroll img {
+  width: 200px;
+}
+
+/* Trending Page styling */
 #trending_area {
   /* background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
     url("./assets/trendingbg.jpg") no-repeat center center/cover; */
@@ -299,7 +313,6 @@ details div {
 
 #trending_area .content {
   display: flex;
-  justify-content: center;
   flex-wrap: wrap;
 }
 
@@ -308,6 +321,7 @@ details div {
   min-height: 100vh;
   background-attachment: fixed;
 }
+
 .content-scroll {
   display: flex;
   overflow-x: auto;
@@ -354,4 +368,86 @@ details div {
 
 .pag-links button:hover {
   opacity: 0.8;
+}
+
+.bm-item {
+  display: inline-block;
+
+  /* Our sidebar item styling */
+  text-decoration: none;
+  margin-bottom: 10px;
+  color: #d1d1d1;
+  transition: color 0.2s;
+}
+
+.bm-item:hover {
+  color: white;
+}
+
+.bm-burger-button {
+  position: absolute;
+  width: 36px;
+  height: 30px;
+  right: 36px;
+  top: 10px;
+}
+
+/* Color/shape of burger icon bars */
+.bm-burger-bars {
+  background: #373a47;
+}
+
+/* Position and sizing of clickable cross button */
+.bm-cross-button {
+  height: 24px;
+  width: 24px;
+}
+
+/* Color/shape of close button cross */
+.bm-cross {
+  background: #bdc3c7;
+}
+
+/* General sidebar styles */
+.bm-menu {
+  background: #000;
+  padding: 2.5em 1.5em 0;
+  font-size: 1.15em;
+}
+
+/* Morph shape necessary with bubble or elastic */
+.bm-morph-shape {
+  fill: #373a47;
+}
+
+/* Wrapper for item list */
+.bm-item-list {
+  color: #b8b7ad;
+}
+
+/* Styling of overlay */
+.bm-overlay {
+  background: rgba(0, 0, 0, 0.8);
+}
+@media screen and (max-width: 1224px) {
+  .nav div {
+    padding: 0;
+  }
+  .nav button {
+    padding-top: 0.8rem;
+  }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+  }
+  #trending_area .content {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .nav .logo img {
+    padding-top: 1rem;
+    width: 150px;
+  }
 }

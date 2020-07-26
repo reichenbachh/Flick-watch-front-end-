@@ -15,11 +15,7 @@ const TrendingArea = ({ trending: { loading, trending }, getTrending }) => {
   if (loading || trending === null) {
     return (
       <div id='trending_area_loader'>
-        <Nav />
         <div className='title'>
-          <h1>
-            Trending <span className='title-span'>Global</span>
-          </h1>
           <div className='content'>
             <Preloader />
           </div>
