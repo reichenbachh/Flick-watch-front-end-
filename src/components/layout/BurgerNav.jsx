@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { slide as Menu } from "react-burger-menu";
 import { Link } from "react-router-dom";
 const BurgerNav = () => {
@@ -6,8 +6,18 @@ const BurgerNav = () => {
     event.preventDefault();
   };
 
+  const [openState, setOpenState] = useState({ isOPen: false });
+
+  const closeMenu = () => {
+    setOpenState({ isOPen: true });
+  };
+
+  const isMenuOpen = () => {
+    setOpenState(openState.isOPen);
+  };
+
   return (
-    <Menu>
+    <Menu right isOpen={openState.isOPen} onStateChange={closeMenu}>
       <Link id='home' className='menu-item' to='/trending'>
         Trending
       </Link>
@@ -18,9 +28,6 @@ const BurgerNav = () => {
         Movies
       </Link>
       <Link id='contact' className='menu-item' to='/login'>
-        Login
-      </Link>
-      <Link onClick={showSettings} className='menu-item--small' href='#!'>
         Login
       </Link>
     </Menu>

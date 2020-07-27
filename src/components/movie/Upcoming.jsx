@@ -9,7 +9,6 @@ const Upcoming = ({ movie: { latest, loading }, getUpcomingMovies }) => {
     getUpcomingMovies();
     //eslint-disable-next-line
   }, []);
-  console.log(latest, loading);
   if (loading || latest === null) {
     return (
       <div id='trending_area_loader'>

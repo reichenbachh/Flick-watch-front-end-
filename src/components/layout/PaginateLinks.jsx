@@ -9,9 +9,6 @@ const PaginateLinks = ({
   let { page, total_pages } = trending;
   let nextPage = page + 1;
   let prevPage = page - 1;
-
-  console.log(prevPage);
-  console.log(nextPage);
   const nextPageClick = () => {
     getNextPage(nextPage);
   };

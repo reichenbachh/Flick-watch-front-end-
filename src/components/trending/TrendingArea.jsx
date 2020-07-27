@@ -23,7 +23,6 @@ const TrendingArea = ({ trending: { loading, trending }, getTrending }) => {
       </div>
     );
   } else {
-    console.log(trending);
     return (
       <div id='trending_area'>
         <Nav />
