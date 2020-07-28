@@ -34,6 +34,30 @@ input::-webkit-input-placeholder {
   height: 100vh;
   overflow: hidden;
 }
+
+body::-webkit-scrollbar-track,
+.content-scroll::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  background-color: #4e4e4e;
+}
+
+body::-webkit-scrollbar,
+.content-scroll::-webkit-scrollbar {
+  width: 12px;
+  background-color: #555555;
+}
+
+body::-webkit-scrollbar-thumb,
+.content-scroll::-webkit-scrollbar-thumb {
+  background-clip: padding-box;
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+  background-color: var(--primary-color);
+}
+
 .nav {
   display: flex;
   justify-content: space-between;
@@ -326,14 +350,18 @@ span {
   display: flex;
   overflow-x: auto;
 }
-.upcoming-scroll {
+.upcoming-scroll,
+.popular-scroll {
   margin: 1rem;
+  padding: 1rem;
+}
+.topRated-scroll {
   padding: 1rem;
 }
 .title h1 {
   color: var(--secondary-color);
-  padding: 1rem;
-  margin: 1rem;
+  padding: 0.5rem;
+  margin: 0.5rem;
 }
 
 .title h1 .title-span {
@@ -447,5 +475,11 @@ span {
   .nav .logo img {
     padding-top: 1rem;
     width: 150px;
+  }
+  .title h1 {
+    text-align: center;
+    color: var(--secondary-color);
+    padding: 0.5rem;
+    margin: 0.5rem;
   }
 }

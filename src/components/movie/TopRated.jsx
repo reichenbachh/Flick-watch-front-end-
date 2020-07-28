@@ -1,16 +1,16 @@
 import React from "react";
 import ScrollCard from "../layout/ScrollCard";
 
-const Upcoming = ({ upcoming }) => {
+const TopRated = ({ topRated }) => {
   return (
-    <div className='upcoming-scroll'>
+    <div className='topRated-scroll'>
       <div className='title'>
         <h1>
-          Upcoming <span className='title-span'>Global</span>
+          TopRated <span className='title-span'>Global</span>
         </h1>
       </div>
       <div className='content-scroll'>
-        {upcoming.results.map((data) => (
+        {topRated.results.map((data) => (
           <ScrollCard data={data} key={data.id} />
         ))}
       </div>
@@ -18,4 +18,4 @@ const Upcoming = ({ upcoming }) => {
   );
 };
 
-export default Upcoming;
+export default TopRated;

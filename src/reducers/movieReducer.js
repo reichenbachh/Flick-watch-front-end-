@@ -1,20 +1,21 @@
-import { GET_UPCOMING_MOVIES, SET_ERROR } from "../actions/types";
+import { SET_ERROR, GET_MOVIE_DATA } from "../actions/types";
 
 const initialState = {
   loading: null,
-  latest: null,
-  trending: null,
+  topRated: null,
+  popular: null,
   upcoming: null,
-  nowPLaying: null,
   error: null,
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case GET_UPCOMING_MOVIES:
+    case GET_MOVIE_DATA:
       return {
         loading: false,
-        latest: action.payload,
+        upcoming: action.payload[0],
+        popular: action.payload[1],
+        topRated: action.payload[2],
       };
     default:
       return {
