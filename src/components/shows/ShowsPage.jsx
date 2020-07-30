@@ -1,21 +1,21 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { getMovieData } from "../../actions/MovieActions";
+import { getTvShowData } from "../../actions/TvShowActions";
 import Preloader from "../layout/Preloader";
 import Nav from "../layout/Nav";
-import Upcoming from "./Upcoming";
+import AiringToday from "./AiringToday";
 import Popular from "./Popular";
-import TopRated from "./TopRated";
+import TopRated from "./TopRatedShows";
 
-const MoviePage = ({
-  movie: { upcoming, loading, topRated, popular },
-  getMovieData,
+const ShowsPage = ({
+  tvShow: { popular, airingToday, topRated, loading },
+  getTvShowData,
 }) => {
   useEffect(() => {
-    getMovieData();
+    getTvShowData();
     //eslint-disable-next-line
   }, []);
-  if (loading || upcoming === null || topRated === null || popular === null) {
+  if (loading || popular === null) {
     return (
       <div id='trending_area_loader'>
         <div className='title'>
@@ -27,9 +27,9 @@ const MoviePage = ({
     );
   }
   return (
-    <div id='movie_area'>
+    <div id='show-area'>
       <Nav />
-      <Upcoming upcoming={upcoming} />
+      <AiringToday airingToday={airingToday} />
       <Popular popular={popular} />
       <TopRated topRated={topRated} />
     </div>
@@ -37,6 +37,7 @@ const MoviePage = ({
 };
 
 const mapStateToProps = (state) => ({
-  movie: state.movie,
+  tvShow: state.tvShow,
 });
-export default connect(mapStateToProps, { getMovieData })(MoviePage);
+
+export default connect(mapStateToProps, { getTvShowData })(ShowsPage);

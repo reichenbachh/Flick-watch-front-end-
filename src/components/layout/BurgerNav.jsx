@@ -21,7 +21,7 @@ const BurgerNav = () => {
       <Link id='home' className='menu-item' to='/trending'>
         Trending
       </Link>
-      <Link id='about' className='menu-item' to='/#!'>
+      <Link id='about' className='menu-item' to='/tvShows'>
         TV Shows
       </Link>
       <Link id='contact' className='menu-item' to='/movies'>

@@ -1,9 +1,4 @@
-import {
-  GET_TRENDING,
-  SET_LOADING,
-  GET_NEXT_PAGE,
-  GET_PREV_PAGE,
-} from "../actions/types";
+import { GET_TRENDING, GET_NEXT_PAGE, GET_PREV_PAGE } from "../actions/types";
 
 const initialState = {
   loading: null,

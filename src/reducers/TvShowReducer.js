@@ -1,21 +1,22 @@
-import { SET_ERROR, GET_MOVIE_DATA } from "../actions/types";
+import { GET_TVSHOW_DATA, SET_ERROR } from "../actions/types";
 
 const initialState = {
   loading: null,
-  topRated: null,
   popular: null,
-  upcoming: null,
+  topRated: null,
+  airingToday: null,
   error: null,
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case GET_MOVIE_DATA:
+    case GET_TVSHOW_DATA:
       return {
+        ...state,
         loading: false,
-        upcoming: action.payload[0],
         popular: action.payload[1],
         topRated: action.payload[2],
+        airingToday: action.payload[0],
       };
     case SET_ERROR:
       return {

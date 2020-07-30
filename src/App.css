@@ -27,7 +27,10 @@ input::-webkit-input-placeholder {
   line-height: 1;
   color: var(--secondary-color);
 }
-/* Navigation Styling */
+
+/* *****************************************************
+                  Global Styles
+****************************************************** */
 #home-landing {
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     url("./assets/homeLanding.jpg") no-repeat center center/cover;
@@ -58,6 +61,9 @@ body::-webkit-scrollbar-thumb,
   background-color: var(--primary-color);
 }
 
+/* *****************************************************
+                  Navigation Styling
+****************************************************** */
 .nav {
   display: flex;
   justify-content: space-between;
@@ -82,6 +88,9 @@ body::-webkit-scrollbar-thumb,
   color: var(--primary-color);
 }
 
+/* *****************************************************
+                  Home Landing Page Styling
+****************************************************** */
 .landing-text {
   overflow: hidden;
   position: absolute;
@@ -104,7 +113,9 @@ body::-webkit-scrollbar-thumb,
   border-bottom: 3px solid var(--secondary-color);
 }
 
-/* Login and Register From Styling */
+/* *****************************************************
+                  Login and Register From Styling
+****************************************************** */
 .login-container {
   background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
     url("./assets/login_bg.jpg") no-repeat center center/cover;
@@ -208,7 +219,9 @@ span {
   margin-bottom: 0.8rem;
 }
 
-/* Password Reset Form styling */
+/* *****************************************************
+                 Password Reset Form styling
+****************************************************** */
 .forgetPass {
   position: absolute;
   width: 100%;
@@ -266,7 +279,9 @@ span {
   color: var(--secondary-color);
 }
 
-/* Movie Page and Card Styling */
+/* ******************************************************
+                 Movie Page and Card Styling
+******************************************************* */
 .Movie-card img {
   width: 100%;
 }
@@ -319,7 +334,9 @@ span {
   width: 200px;
 }
 
-/* Trending Page styling */
+/* ******************************************************
+                Trending Page styling
+******************************************************* */
 #trending_area {
   /* background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
     url("./assets/trendingbg.jpg") no-repeat center center/cover; */
@@ -340,21 +357,31 @@ span {
   flex-wrap: wrap;
 }
 
-#movie_area {
+/* ******************************************************
+                movies Page styling
+******************************************************* */
+#movie_area,
+#show-area {
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)) #262335;
   min-height: 100vh;
   background-attachment: fixed;
 }
 
+/* ******************************************************
+           side scroll styling
+******************************************************* */
 .content-scroll {
   display: flex;
   overflow-x: auto;
 }
 .upcoming-scroll,
+.popularTV-scroll,
+.airingTodayTV-scroll,
 .popular-scroll {
   margin: 1rem;
   padding: 1rem;
 }
+.topRatedTV-scroll,
 .topRated-scroll {
   padding: 1rem;
 }
@@ -376,6 +403,9 @@ span {
   overflow: hidden;
 }
 
+/* ******************************************************
+          Pagination Links Styling
+******************************************************* */
 .pag-links {
   display: flex;
   justify-content: center;
@@ -397,6 +427,9 @@ span {
 .pag-links button:hover {
   opacity: 0.8;
 }
+/* ******************************************************
+          burger menu styling
+******************************************************* */
 
 .bm-item {
   outline: none;
@@ -455,6 +488,9 @@ span {
 .bm-overlay {
   background: rgba(0, 0, 0, 0.8);
 }
+/* ******************************************************
+           Media Queries
+******************************************************* */
 @media screen and (max-width: 1224px) {
   .nav div {
     padding: 0;

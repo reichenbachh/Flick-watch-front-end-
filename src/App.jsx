@@ -3,6 +3,7 @@ import Home from "./pages/Home";
 import LoginArea from "./pages/LoginArea";
 import TrendingArea from "./components/trending/TrendingArea";
 import MoviePage from "./components/movie/MoviePage";
+import ShowsPage from "./components/shows/ShowsPage";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./store";
@@ -18,6 +19,7 @@ function App() {
             <Route exact path='/login' component={LoginArea} />
             <Route exact path='/trending' component={TrendingArea} />
             <Route exact path='/movies' component={MoviePage} />
+            <Route exact path='/tvShows' component={ShowsPage} />
           </Switch>
         </div>
       </Router>

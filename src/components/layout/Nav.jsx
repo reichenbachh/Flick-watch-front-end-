@@ -25,7 +25,7 @@ const Nav = () => {
                   <Link to='/trending'>Trending</Link>
                 </li>
                 <li>
-                  <a href='#!'>Tv Shows</a>
+                  <Link to='/tvShows'>Tv Shows</Link>
                 </li>
                 <li>
                   <Link to='/movies'>Movies</Link>
