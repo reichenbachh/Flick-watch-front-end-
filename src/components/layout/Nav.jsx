@@ -22,6 +22,11 @@ const Nav = () => {
             <div className='menu'>
               <ul>
                 <li>
+                  <Link to='/search'>
+                    <i class='fas fa-search '></i>
+                  </Link>
+                </li>
+                <li>
                   <Link to='/trending'>Trending</Link>
                 </li>
                 <li>
@@ -31,7 +36,7 @@ const Nav = () => {
                   <Link to='/movies'>Movies</Link>
                 </li>
                 <li>
-                  <Link to='/login'>Sign Up?</Link>
+                  <Link to='/login'>Sign Up</Link>
                 </li>
               </ul>
             </div>

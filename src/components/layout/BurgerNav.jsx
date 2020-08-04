@@ -30,6 +30,9 @@ const BurgerNav = () => {
       <Link id='contact' className='menu-item' to='/login'>
         Login
       </Link>
+      <Link to='/search'>
+        <i className='fas fa-search '></i>
+      </Link>
     </Menu>
   );
 };

@@ -76,6 +76,11 @@ body::-webkit-scrollbar-thumb,
   width: 220px;
 }
 
+.nav .fas {
+  font-weight: 1000;
+  font-size: 20px;
+}
+
 .nav ul li {
   display: inline-block;
   padding: 0.5rem;
@@ -295,6 +300,10 @@ span {
   flex-direction: column;
   color: var(--secondary-color);
 }
+.Movie-card :hover,
+.Movie-card-scroll :hover {
+  cursor: pointer;
+}
 .Movie-card .name,
 .Movie-card-scroll .name {
   font-size: 11px;
@@ -332,6 +341,10 @@ span {
 /* Movie card scroll styling */
 .Movie-card-scroll img {
   width: 200px;
+}
+
+.Movie-card-scroll img:hover {
+  filter: grayscale(0.7);
 }
 
 /* ******************************************************
