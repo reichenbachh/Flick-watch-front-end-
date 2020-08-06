@@ -23,7 +23,7 @@ const Nav = () => {
               <ul>
                 <li>
                   <Link to='/search'>
-                    <i class='fas fa-search '></i>
+                    <i className='fas fa-search '></i>
                   </Link>
                 </li>
                 <li>

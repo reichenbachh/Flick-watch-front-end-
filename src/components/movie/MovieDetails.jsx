@@ -1,29 +1,38 @@
 import React, { useEffect } from "react";
+import Preloader from "../layout/Preloader";
+import Nav from "../layout/Nav";
 import { connect } from "react-redux";
-import { fetchDetails } from "../../actions/MovieActions";
+import { fetchDetails, clearState } from "../../actions/MovieActions";
+import DetailsCard from "../layout/DetailsCard";
 
-const MovieDetails = ({ movie: { details }, loading, fetchDetails, match }) => {
+const MovieDetails = ({
+  movie: { details },
+  loading,
+  fetchDetails,
+  clearState,
+  match,
+}) => {
   useEffect(() => {
+    clearState();
     fetchDetails(match.params.id);
     //eslint-disable-next-line
   }, []);
 
   if (loading === null || details === null) {
     return (
-      <div>
-        <h1>Loading</h1>
+      <div id='trending_area_loader'>
+        <div className='title'>
+          <div className='content'>
+            <Preloader />
+          </div>
+        </div>
       </div>
     );
   }
   return (
-    <div
-      style={{
-        backgroundImage: `url(https://image.tmdb.org/t/p/original/${details.backdrop_path})`,
-        height: `100vh`,
-      }}
-      className='movie-details'
-    >
-      lets gooo
+    <div className='movie-details'>
+      <Nav />
+      <DetailsCard details={details} />
     </div>
   );
 };
@@ -31,4 +40,6 @@ const MovieDetails = ({ movie: { details }, loading, fetchDetails, match }) => {
 const mapStateToProps = (state) => ({
   movie: state.movie,
 });
-export default connect(mapStateToProps, { fetchDetails })(MovieDetails);
+export default connect(mapStateToProps, { fetchDetails, clearState })(
+  MovieDetails
+);

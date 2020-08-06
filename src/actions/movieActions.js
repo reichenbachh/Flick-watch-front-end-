@@ -1,4 +1,4 @@
-import { SET_ERROR, GET_MOVIE_DATA, GET_DETAILS } from "./types";
+import { SET_ERROR, GET_MOVIE_DATA, GET_DETAILS, CLEAR_STATE } from "./types";
 import axios from "axios";
 
 //Actions
@@ -43,4 +43,10 @@ export const fetchDetails = (movie_id) => async (dispatch) => {
       type: SET_ERROR,
     });
   }
+};
+
+export const clearState = () => (dispatch) => {
+  dispatch({
+    type: CLEAR_STATE,
+  });
 };

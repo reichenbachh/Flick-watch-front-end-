@@ -15,7 +15,7 @@ const MoviePage = ({
     getMovieData();
     //eslint-disable-next-line
   }, []);
-  if (loading || upcoming === null || topRated === null || popular === null) {
+  if (loading == null || upcoming === null) {
     return (
       <div id='trending_area_loader'>
         <div className='title'>

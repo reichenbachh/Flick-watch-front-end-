@@ -501,6 +501,73 @@ span {
 .bm-overlay {
   background: rgba(0, 0, 0, 0.8);
 }
+/* * ******************************************************
+               Movie Details
+******************************************************* * */
+
+.movie-details {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)) #262335;
+  min-height: 100vh;
+  background-attachment: fixed;
+  color: var(--secondary-color);
+}
+.details-wrapper {
+  width: 70%;
+  display: flex;
+  padding: 3rem;
+}
+
+.details-card .rate {
+  color: var(--primary-color) !important;
+}
+.ratings {
+  padding-right: 1rem;
+}
+.details-card {
+  min-width: 100vw;
+  height: 60vh;
+  /* border: 3px solid red; */
+}
+.movie-details .genInfo {
+  display: flex;
+  flex-direction: column;
+  padding-left: 1rem;
+}
+.info {
+  margin-bottom: 2rem;
+}
+
+.info-secondary {
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+}
+.overview {
+  width: 60%;
+}
+.tags {
+  display: flex;
+}
+.runtime {
+  margin-right: 1rem;
+  border: 1px solid var(--secondary-color);
+  padding: 0.3rem;
+}
+.options {
+  margin-top: 4rem;
+}
+
+.options i {
+  padding: 1rem;
+  margin: 1rem;
+  font-size: 20px;
+  border-radius: 50%;
+  background: var(--primary-color);
+}
+.movie-details img {
+  width: 300px;
+}
+
 /* ******************************************************
            Media Queries
 ******************************************************* */
