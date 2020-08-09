@@ -1,5 +1,5 @@
 import React from "react";
-import ScrollCard from "../layout/ScrollCard";
+import MovieScrollCard from "../layout/MovieScrollCard";
 
 const Upcoming = ({ upcoming }) => {
   return (
@@ -11,7 +11,7 @@ const Upcoming = ({ upcoming }) => {
       </div>
       <div className='content-scroll'>
         {upcoming.results.map((data) => (
-          <ScrollCard data={data} key={data.id} />
+          <MovieScrollCard data={data} key={data.id} />
         ))}
       </div>
     </div>

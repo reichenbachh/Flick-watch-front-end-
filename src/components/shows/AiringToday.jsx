@@ -1,5 +1,5 @@
 import React from "react";
-import ScrollCard from "../layout/ScrollCard";
+import ShowScrollCard from "../layout/ShowScrollCard";
 
 const AiringToday = ({ airingToday }) => {
   return (
@@ -11,7 +11,7 @@ const AiringToday = ({ airingToday }) => {
       </div>
       <div className='content-scroll'>
         {airingToday.results.map((data) => (
-          <ScrollCard data={data} key={data.id} />
+          <ShowScrollCard data={data} key={data.id} />
         ))}
       </div>
     </div>

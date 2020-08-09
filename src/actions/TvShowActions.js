@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_TVSHOW_DATA, SET_ERROR } from "./types";
+import { GET_TVSHOW_DATA, SET_ERROR, GET_TV_SHOW_DETAILS } from "./types";
 
 export const getTvShowData = () => async (dispatch) => {
   try {
@@ -23,4 +23,17 @@ export const getTvShowData = () => async (dispatch) => {
       payload: error,
     });
   }
+};
+
+//fetch Tv show  details
+export const getShowDetails = (id) => async (dispatch) => {
+  try {
+    const showDetails = await axios.get(
+      `https://api.themoviedb.org/3/tv/${id}?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US`
+    );
+    dispatch({
+      type: GET_TV_SHOW_DETAILS,
+      payload: showDetails.data,
+    });
+  } catch (error) {}
 };

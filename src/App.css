@@ -368,6 +368,7 @@ span {
 #trending_area .content {
   display: flex;
   flex-wrap: wrap;
+  padding-left: 4rem;
 }
 
 /* ******************************************************
@@ -524,7 +525,7 @@ span {
   padding-right: 1rem;
 }
 .details-card {
-  min-width: 100vw;
+  min-width: 90vw;
   /* height: 60vh; */
   /* border: 3px solid red; */
 }
@@ -594,6 +595,7 @@ span {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    padding-left: 0rem;
   }
   .nav .logo img {
     padding-top: 1rem;

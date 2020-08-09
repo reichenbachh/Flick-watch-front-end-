@@ -28,7 +28,7 @@ export const getMovieData = () => async (dispatch) => {
 };
 
 //Fetch Movie Details Page
-export const fetchDetails = (movie_id) => async (dispatch) => {
+export const fetchMovieDetails = (movie_id) => async (dispatch) => {
   try {
     const detailsRes = await axios.get(
       `https://api.themoviedb.org/3/movie/${movie_id}?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US`

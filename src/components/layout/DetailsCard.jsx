@@ -8,11 +8,9 @@ const DetailsCard = ({ details }) => {
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 650px)" });
   const {
     genres,
-    original_language,
     original_title,
     overview,
     release_date,
-    status,
     runtime,
     vote_average,
     poster_path,

@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const ScrollCard = ({ data }) => {
+const MovieScrollCard = ({ data }) => {
   const {
     id,
     media_type,
@@ -13,6 +13,7 @@ const ScrollCard = ({ data }) => {
     poster_path,
     name,
   } = data;
+
   return (
     <Link to={`/movieDetails/${id}`}>
       <div className='Movie-card-scroll'>
@@ -67,4 +68,4 @@ const ScrollCard = ({ data }) => {
   );
 };
 
-export default ScrollCard;
+export default MovieScrollCard;

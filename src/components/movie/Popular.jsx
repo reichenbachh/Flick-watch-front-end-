@@ -1,5 +1,5 @@
 import React from "react";
-import ScrollCard from "../layout/ScrollCard";
+import MovieScrollCard from "../layout/MovieScrollCard";
 
 const Popular = ({ popular }) => {
   return (
@@ -11,7 +11,7 @@ const Popular = ({ popular }) => {
       </div>
       <div className='content-scroll'>
         {popular.results.map((data) => (
-          <ScrollCard data={data} key={data.id} />
+          <MovieScrollCard data={data} key={data.id} />
         ))}
       </div>
     </div>

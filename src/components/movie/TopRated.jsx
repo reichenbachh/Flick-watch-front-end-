@@ -1,5 +1,5 @@
 import React from "react";
-import ScrollCard from "../layout/ScrollCard";
+import MovieScrollCard from "../layout/MovieScrollCard";
 
 const TopRated = ({ topRated }) => {
   return (
@@ -11,7 +11,7 @@ const TopRated = ({ topRated }) => {
       </div>
       <div className='content-scroll'>
         {topRated.results.map((data) => (
-          <ScrollCard data={data} key={data.id} />
+          <MovieScrollCard data={data} key={data.id} />
         ))}
       </div>
     </div>
