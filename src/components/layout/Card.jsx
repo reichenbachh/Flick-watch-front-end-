@@ -6,6 +6,7 @@ const Card = ({ data }) => {
     id,
     media_type,
     original_language,
+
     title,
     vote_average,
     release_date,
@@ -39,6 +40,11 @@ const Card = ({ data }) => {
               </p>
               <p>
                 <span className='rate'>{original_language}</span>
+              </p>
+              <p>
+                <span>
+                  <i class='fas fa-plus'></i>
+                </span>
               </p>
             </div>
           </div>
@@ -74,6 +80,11 @@ const Card = ({ data }) => {
               </p>
               <p>
                 <span className='rate'>{original_language}</span>
+              </p>
+              <p>
+                <span>
+                  <i class='fas fa-plus'></i>
+                </span>
               </p>
             </div>
           </div>

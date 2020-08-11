@@ -34,11 +34,11 @@ const PaginateLinks = ({
   }
   return (
     <div className='pag-links'>
-      <div className='nextBtn'>
-        <button onClick={nextPageClick}>Next</button>
-      </div>
       <div className='prevBtn'>
         <button onClick={prevPageClick}>Prev</button>
+      </div>
+      <div className='nextBtn'>
+        <button onClick={nextPageClick}>Next</button>
       </div>
     </div>
   );

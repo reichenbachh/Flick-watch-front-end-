@@ -1,15 +1,21 @@
 import React from "react";
 import { useMediaQuery } from "react-responsive";
+import ReactTooltip from "react-tooltip";
+import "react-responsive-modal/styles.css";
+import { Modal } from "react-responsive-modal";
 
-const DetailsCard = ({ details }) => {
+const DetailsCard = ({ details, modal, onOpenModal, onCloseModal }) => {
   const isDesktopOrLaptop = useMediaQuery({
     query: "(min-width: 650px)",
   });
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 650px)" });
   const {
     genres,
+    homepage,
     original_title,
     overview,
+    first_air_date,
+    episode_run_time,
     release_date,
     runtime,
     vote_average,
@@ -17,8 +23,6 @@ const DetailsCard = ({ details }) => {
     backdrop_path,
   } = details;
 
-  //Extract only year from release date
-  let splitDate = release_date.split("-");
   return (
     <div>
       {isDesktopOrLaptop && (
@@ -40,11 +44,15 @@ const DetailsCard = ({ details }) => {
               <div className='info'>
                 <div className='Info-primary'>
                   <h1>{original_title}</h1>
-                  <p>{splitDate[0]}</p>
+                  <p>
+                    {release_date
+                      ? release_date.split("-")[0]
+                      : first_air_date.split("-")[0]}
+                  </p>
                 </div>
                 <div className='info-secondary'>
                   <div className='runtime'>
-                    <h4>{runtime}mins</h4>
+                    <h4>{runtime ? runtime : episode_run_time[0]}mins</h4>
                   </div>
                   <div className='ratings'>
                     <h4>
@@ -62,12 +70,34 @@ const DetailsCard = ({ details }) => {
                 <p>{overview}</p>
               </div>
               <div className='options'>
-                <i className='fas fa-plus '></i>
-                <i className='fas fa-play '></i>
-                <i className='fas fa-globe '></i>
+                <a
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  data-tip='Track flick'
+                  href={homepage}
+                >
+                  <i className='fas fa-plus '></i>
+                </a>
+                <ReactTooltip />
+                <a onClick={onOpenModal} data-tip='watch trailer'>
+                  <i className='fas fa-play '></i>
+                </a>
+                <ReactTooltip />
+                <a
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  data-tip='visit website'
+                  href={homepage}
+                >
+                  <i className='fas fa-globe '></i>
+                </a>
+                <ReactTooltip />
               </div>
             </div>
           </div>
+          <Modal open={modal} onClose={onCloseModal} center>
+            <h1>Lets gooo</h1>
+          </Modal>
         </div>
       )}
       {isTabletOrMobile && (
@@ -89,12 +119,16 @@ const DetailsCard = ({ details }) => {
               <div className='info'>
                 <div className='Info-primary'>
                   <h1>{original_title}</h1>
-                  <p>{splitDate[0]}</p>
+                  <p>
+                    {release_date
+                      ? release_date.split("-")[0]
+                      : first_air_date.split("-")[0]}
+                  </p>
                 </div>
                 <div className='info-secondary'>
                   <div className='info-row-1'>
                     <div className='runtime'>
-                      <h4>{runtime}mins</h4>
+                      <h4>{runtime ? runtime : episode_run_time[0]}mins</h4>
                     </div>
                     <div className='ratings'>
                       <h4>
