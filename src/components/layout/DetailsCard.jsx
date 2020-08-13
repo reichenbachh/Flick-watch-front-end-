@@ -1,10 +1,11 @@
 import React from "react";
 import { useMediaQuery } from "react-responsive";
 import ReactTooltip from "react-tooltip";
+import TrailerModal from "./TrailerModal";
 import "react-responsive-modal/styles.css";
 import { Modal } from "react-responsive-modal";
 
-const DetailsCard = ({ details, modal, onOpenModal, onCloseModal }) => {
+const DetailsCard = ({ path, details, modal, onOpenModal, onCloseModal }) => {
   const isDesktopOrLaptop = useMediaQuery({
     query: "(min-width: 650px)",
   });
@@ -22,7 +23,6 @@ const DetailsCard = ({ details, modal, onOpenModal, onCloseModal }) => {
     poster_path,
     backdrop_path,
   } = details;
-
   return (
     <div>
       {isDesktopOrLaptop && (
@@ -96,7 +96,7 @@ const DetailsCard = ({ details, modal, onOpenModal, onCloseModal }) => {
             </div>
           </div>
           <Modal open={modal} onClose={onCloseModal} center>
-            <h1>Lets gooo</h1>
+            <TrailerModal path={path} />
           </Modal>
         </div>
       )}
@@ -148,12 +148,21 @@ const DetailsCard = ({ details, modal, onOpenModal, onCloseModal }) => {
                 <p>{overview}</p>
               </div>
               <div className='options'>
-                <i className='fas fa-plus '></i>
-                <i className='fas fa-play '></i>
-                <i className='fas fa-globe '></i>
+                <a href='#!'>
+                  <i className='fas fa-plus '></i>
+                </a>
+                <a onClick={onOpenModal}>
+                  <i className='fas fa-play '></i>
+                </a>
+                <a target='_blank' rel='noopener noreferrer' href={homepage}>
+                  <i className='fas fa-globe '></i>
+                </a>
               </div>
             </div>
           </div>
+          <Modal open={modal} onClose={onCloseModal}>
+            <TrailerModal path={path} />
+          </Modal>
         </div>
       )}
     </div>

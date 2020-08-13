@@ -33,10 +33,13 @@ export const fetchMovieDetails = (movie_id) => async (dispatch) => {
     const detailsRes = await axios.get(
       `https://api.themoviedb.org/3/movie/${movie_id}?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US`
     );
+    const showTrailer = await axios.get(
+      `https://api.themoviedb.org/3/movie/${movie_id}/videos?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US`
+    );
 
     dispatch({
       type: GET_DETAILS,
-      payload: detailsRes.data,
+      payload: [detailsRes.data, showTrailer.data],
     });
   } catch (error) {
     dispatch({

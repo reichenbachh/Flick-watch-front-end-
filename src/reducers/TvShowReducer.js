@@ -2,6 +2,8 @@ import {
   GET_TVSHOW_DATA,
   SET_ERROR,
   GET_TV_SHOW_DETAILS,
+  GET_TV_SHOW_TRAILER,
+  CLEAR_STATE,
 } from "../actions/types";
 
 const initialState = {
@@ -10,6 +12,7 @@ const initialState = {
   topRated: null,
   airingToday: null,
   details: null,
+  trailer: null,
   error: null,
 };
 
@@ -27,7 +30,13 @@ export default (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        details: action.payload,
+        details: action.payload[0],
+        trailer: action.payload[1],
+      };
+    case CLEAR_STATE:
+      return {
+        ...state,
+        details: null,
       };
     case SET_ERROR:
       return {

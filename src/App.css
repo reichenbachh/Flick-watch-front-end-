@@ -587,11 +587,65 @@ span {
 .show-details img {
   width: 250px;
 }
+.trailer-wrapper h1 {
+  color: var(--primary-color);
+}
+.trailer-wrapper {
+  margin-top: 1rem;
+  height: 60vh;
+  width: 100%;
+}
+
+.react-responsive-modal-overlay {
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  z-index: 1000;
+  padding: 1.2rem;
+}
+.react-responsive-modal-modal {
+  /* position: fixed; */
+  min-width: 60%;
+  padding: 0;
+  background: none;
+  margin: 0;
+}
+.react-responsive-modal-closeButton {
+  position: fixed;
+  top: 14px;
+  right: 14px;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  background-color: var(--primary-color);
+  display: flex;
+}
 
 /* ******************************************************
            Media Queries
 ******************************************************* */
 @media screen and (max-width: 1224px) {
+  .trailer-wrapper {
+    margin-top: 1rem;
+    height: 50vh;
+    width: 100%;
+  }
+  .react-responsive-modal-modal {
+    /* position: fixed; */
+    min-width: 100%;
+    padding: 0;
+    background: none;
+    margin: 0;
+  }
   .nav div {
     padding: 0;
   }
@@ -649,6 +703,18 @@ span {
   }
 }
 @media screen and (max-width: 650px) {
+  .trailer-wrapper {
+    margin-top: 1rem;
+    height: 50vh;
+    width: 100%;
+  }
+  .react-responsive-modal-modal {
+    /* position: fixed; */
+    min-width: 100%;
+    padding: 0;
+    background: none;
+    margin: 0;
+  }
   .details-card {
     padding: 0;
     margin-top: 0.5rem;

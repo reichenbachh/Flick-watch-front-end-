@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Preloader from "../layout/Preloader";
 import Nav from "../layout/Nav";
 import { connect } from "react-redux";
@@ -6,7 +6,7 @@ import { fetchMovieDetails, clearState } from "../../actions/MovieActions";
 import DetailsCard from "../layout/DetailsCard";
 
 const MovieDetails = ({
-  movie: { details },
+  movie: { details, trailer },
   loading,
   fetchMovieDetails,
   clearState,
@@ -18,7 +18,16 @@ const MovieDetails = ({
     //eslint-disable-next-line
   }, []);
 
-  if (loading === null || details === null) {
+  const [modal, setModalState] = useState(false);
+
+  const onOpenModal = () => {
+    setModalState(true);
+  };
+
+  const onCloseModal = () => {
+    setModalState(false);
+  };
+  if (loading === null || details === null || trailer === null) {
     return (
       <div id='trending_area_loader'>
         <div className='title'>
@@ -29,10 +38,21 @@ const MovieDetails = ({
       </div>
     );
   }
+  const path = trailer.results.map((item) => {
+    return item.key;
+  });
+  console.log(trailer);
   return (
     <div className='movie-details'>
       <Nav />
-      <DetailsCard details={details} />
+      <DetailsCard
+        path={path}
+        modal={modal}
+        onOpenModal={onOpenModal}
+        onCloseModal={onCloseModal}
+        details={details}
+        id={match.params.id}
+      />
     </div>
   );
 };

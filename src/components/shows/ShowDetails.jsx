@@ -3,17 +3,20 @@ import Nav from "../layout/Nav";
 import DetailsCard from "../layout/DetailsCard";
 import Preloader from "../layout/Preloader";
 import { connect } from "react-redux";
-import { getShowDetails } from "../../actions/TvShowActions";
+import { getShowDetails, clearState } from "../../actions/TvShowActions";
 
 const ShowDetails = ({
   match,
-  tvShow: { loading, details },
+  tvShow: { loading, details, trailer },
   getShowDetails,
+  clearState,
 }) => {
   useEffect(() => {
+    clearState();
     getShowDetails(match.params.id);
     //eslint-disable-next-line
   }, []);
+
   const [modal, setModalState] = useState(false);
 
   const onOpenModal = () => {
@@ -24,7 +27,7 @@ const ShowDetails = ({
     setModalState(false);
   };
 
-  if (loading === null || details === null) {
+  if (loading === null || details === null || trailer === null) {
     return (
       <div id='trending_area_loader'>
         <div className='title'>
@@ -35,14 +38,19 @@ const ShowDetails = ({
       </div>
     );
   }
+  const path = trailer.results.map((item) => {
+    return item.key;
+  });
   return (
     <div className='show-details'>
       <Nav />
       <DetailsCard
+        path={path}
         modal={modal}
         onOpenModal={onOpenModal}
         onCloseModal={onCloseModal}
         details={details}
+        id={match.params.id}
       />
     </div>
   );
@@ -52,4 +60,6 @@ const mapStateToProps = (state) => ({
   tvShow: state.tvShow,
 });
 
-export default connect(mapStateToProps, { getShowDetails })(ShowDetails);
+export default connect(mapStateToProps, { getShowDetails, clearState })(
+  ShowDetails
+);
