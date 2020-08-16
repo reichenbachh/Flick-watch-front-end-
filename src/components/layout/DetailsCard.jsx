@@ -23,6 +23,7 @@ const DetailsCard = ({ path, details, modal, onOpenModal, onCloseModal }) => {
     poster_path,
     backdrop_path,
   } = details;
+  console.log(runtime);
   return (
     <div>
       {isDesktopOrLaptop && (
@@ -52,7 +53,10 @@ const DetailsCard = ({ path, details, modal, onOpenModal, onCloseModal }) => {
                 </div>
                 <div className='info-secondary'>
                   <div className='runtime'>
-                    <h4>{runtime ? runtime : episode_run_time[0]}mins</h4>
+                    <h4>
+                      {runtime || runtime === 0 ? runtime : episode_run_time[0]}
+                      mins
+                    </h4>
                   </div>
                   <div className='ratings'>
                     <h4>
@@ -111,7 +115,7 @@ const DetailsCard = ({ path, details, modal, onOpenModal, onCloseModal }) => {
             <div className='row-1'>
               <div className='image'>
                 <img
-                  src={`https://image.tmdb.org/t/p/original/${poster_path}`}
+                  src={`https://image.tmdb.org/t/p/w342/${poster_path}`}
                   alt=''
                   srcSet=''
                 />
@@ -128,7 +132,12 @@ const DetailsCard = ({ path, details, modal, onOpenModal, onCloseModal }) => {
                 <div className='info-secondary'>
                   <div className='info-row-1'>
                     <div className='runtime'>
-                      <h4>{runtime ? runtime : episode_run_time[0]}mins</h4>
+                      <h4>
+                        {runtime || runtime === 0
+                          ? runtime
+                          : episode_run_time[0]}
+                        mins
+                      </h4>
                     </div>
                     <div className='ratings'>
                       <h4>

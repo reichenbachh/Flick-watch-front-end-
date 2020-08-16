@@ -553,7 +553,7 @@ span {
 }
 .overview {
   font-size: 12px;
-  max-width: 60%;
+  /* max-width: 80%; */
 }
 .tags {
   display: flex;
@@ -629,6 +629,23 @@ span {
   background-color: var(--primary-color);
   display: flex;
 }
+/* * ******************************************************
+               Facts Card
+******************************************************* * */
+.details-side {
+  width: 100%;
+  max-width: 350px;
+}
+.details-list h4 {
+  text-align: center;
+}
+.details-side p {
+  padding: 1rem;
+  font-size: 12px;
+}
+.detail-title {
+  color: var(--primary-color);
+}
 
 /* ******************************************************
            Media Queries
@@ -636,9 +653,10 @@ span {
 @media screen and (max-width: 1224px) {
   .trailer-wrapper {
     margin-top: 1rem;
-    height: 50vh;
+    height: 60vh;
     width: 100%;
   }
+
   .react-responsive-modal-modal {
     /* position: fixed; */
     min-width: 100%;

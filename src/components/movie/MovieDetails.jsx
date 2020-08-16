@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
-import Preloader from "../layout/Preloader";
-import Nav from "../layout/Nav";
+
 import { connect } from "react-redux";
 import { fetchMovieDetails, clearState } from "../../actions/MovieActions";
+
+import Preloader from "../layout/Preloader";
+import Nav from "../layout/Nav";
 import DetailsCard from "../layout/DetailsCard";
+import Details from "../layout/Details";
 
 const MovieDetails = ({
   movie: { details, trailer },
@@ -41,7 +44,6 @@ const MovieDetails = ({
   const path = trailer.results.map((item) => {
     return item.key;
   });
-  console.log(trailer);
   return (
     <div className='movie-details'>
       <Nav />
@@ -53,6 +55,7 @@ const MovieDetails = ({
         details={details}
         id={match.params.id}
       />
+      <Details details={details} />
     </div>
   );
 };
