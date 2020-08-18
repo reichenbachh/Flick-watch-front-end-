@@ -18,7 +18,7 @@ const Card = ({ data }) => {
         <div className='Movie-card'>
           <div className='card-img'>
             <img
-              src={`https://image.tmdb.org/t/p/original/${poster_path}`}
+              src={`https://image.tmdb.org/t/p/w342/${poster_path}`}
               alt=''
               srcSet=''
             />

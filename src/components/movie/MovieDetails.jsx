@@ -4,12 +4,13 @@ import { connect } from "react-redux";
 import { fetchMovieDetails, clearState } from "../../actions/MovieActions";
 
 import Preloader from "../layout/Preloader";
+import SimilarScrollCard from "../layout/SimilarScrollCard";
 import Nav from "../layout/Nav";
 import DetailsCard from "../layout/DetailsCard";
 import Details from "../layout/Details";
 
 const MovieDetails = ({
-  movie: { details, trailer },
+  movie: { details, trailer, similar },
   loading,
   fetchMovieDetails,
   clearState,
@@ -55,7 +56,22 @@ const MovieDetails = ({
         details={details}
         id={match.params.id}
       />
-      <Details details={details} />
+      <div className='details-below'>
+        <div className='similar-wrapper'>
+          <h1>
+            Similar<span className='title-span'>Movies</span>
+          </h1>
+          <div className='similar-scroll'>
+            {similar.results.map((data) => (
+              <SimilarScrollCard key={data.id} data={data} />
+            ))}
+          </div>
+        </div>
+
+        <div className='details'>
+          <Details details={details} />
+        </div>
+      </div>
     </div>
   );
 };

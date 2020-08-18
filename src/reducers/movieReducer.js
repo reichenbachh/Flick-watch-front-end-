@@ -11,6 +11,7 @@ const initialState = {
   popular: null,
   upcoming: null,
   details: null,
+  similar: null,
   trailer: null,
   error: null,
 };
@@ -31,6 +32,7 @@ export default (state = initialState, action) => {
         loading: false,
         details: action.payload[0],
         trailer: action.payload[1],
+        similar: action.payload[2],
       };
     case CLEAR_STATE:
       return {
