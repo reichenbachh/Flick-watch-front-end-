@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
+import { connect } from "react-redux";
+import { getShowDetails, clearState } from "../../actions/TvShowActions";
+
 import Nav from "../layout/Nav";
 import DetailsCard from "../layout/DetailsCard";
 import Preloader from "../layout/Preloader";
-import { connect } from "react-redux";
-import { getShowDetails, clearState } from "../../actions/TvShowActions";
+import DetailsShow from "../layout/DetailsShow";
+import SimilarScrollCard from "../layout/SimilarScrollCard";
 
 const ShowDetails = ({
   match,
@@ -52,6 +55,21 @@ const ShowDetails = ({
         details={details}
         id={match.params.id}
       />
+      <div className='details-below'>
+        <div className='similar-wrapper'>
+          <h1>
+            Similar<span className='title-span'>Movies</span>
+          </h1>
+          {/* <div className='similar-scroll'>
+            {similar.results.map((data) => (
+              <SimilarScrollCard key={data.id} data={data} />
+            ))}
+          </div> */}
+        </div>
+        <div className='details'>
+          <DetailsShow details={details} />
+        </div>
+      </div>
     </div>
   );
 };

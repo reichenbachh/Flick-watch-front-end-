@@ -14,6 +14,7 @@ const DetailsCard = ({ path, details, modal, onOpenModal, onCloseModal }) => {
     genres,
     homepage,
     original_title,
+    original_name,
     overview,
     first_air_date,
     episode_run_time,
@@ -44,7 +45,7 @@ const DetailsCard = ({ path, details, modal, onOpenModal, onCloseModal }) => {
             <div className='genInfo'>
               <div className='info'>
                 <div className='Info-primary'>
-                  <h1>{original_title}</h1>
+                  <h1>{original_title ? original_title : original_name}</h1>
                   <p>
                     {release_date
                       ? release_date.split("-")[0]

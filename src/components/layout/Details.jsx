@@ -52,11 +52,11 @@ const Details = ({ details }) => {
         </p>
         <p>
           <span className='detail-title'> spoken_langages</span>:{" "}
-          {extractLangauages(spoken_languages)}
+          {spoken_languages ? extractLangauages(spoken_languages) : ""}
         </p>
         <p>
           <span className='detail-title'> Budget </span>:{" "}
-          {budget === 0 || budget === null
+          {budget || budget === 0 || budget === null
             ? "-"
             : `${convertToCurrency(budget)}`}
         </p>
