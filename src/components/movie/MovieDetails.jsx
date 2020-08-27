@@ -15,12 +15,12 @@ const MovieDetails = ({
   fetchMovieDetails,
   clearState,
   match,
+  history,
 }) => {
   useEffect(() => {
     clearState();
     fetchMovieDetails(match.params.id);
-    //eslint-disable-next-line
-  }, []);
+  }, [match]);
 
   const [modal, setModalState] = useState(false);
 

@@ -18,12 +18,6 @@ const TrailerModal = ({ path }) => {
         width={"100%"}
         height={"100%"}
       />
-      {/* <video
-        typeof='video/mp4'
-        controls
-        autoPlay
-        src={`https://www.youtube.com/watch?v=${path[0]}`}
-      ></video> */}
     </div>
   );
 };

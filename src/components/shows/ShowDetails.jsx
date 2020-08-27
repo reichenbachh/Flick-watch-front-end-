@@ -6,7 +6,7 @@ import Nav from "../layout/Nav";
 import DetailsCard from "../layout/DetailsCard";
 import Preloader from "../layout/Preloader";
 import DetailsShow from "../layout/DetailsShow";
-import SimilarScrollCard from "../layout/SimilarScrollCard";
+import Seasons from "../shows/Seasons";
 
 const ShowDetails = ({
   match,
@@ -58,13 +58,13 @@ const ShowDetails = ({
       <div className='details-below'>
         <div className='similar-wrapper'>
           <h1>
-            Similar<span className='title-span'>Movies</span>
+            Current<span className='title-span'> season</span>
           </h1>
-          {/* <div className='similar-scroll'>
-            {similar.results.map((data) => (
-              <SimilarScrollCard key={data.id} data={data} />
-            ))}
-          </div> */}
+          {details.seasons.map((season, index) => {
+            if (details.seasons.length - 2 === index) {
+              return <Seasons seasonInfo={season} key={season.id} />;
+            }
+          })}
         </div>
         <div className='details'>
           <DetailsShow details={details} />

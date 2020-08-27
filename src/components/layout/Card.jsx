@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import login_bg from "../../assets/login_bg.jpg";
+import no_image from "../../assets/no_image.png";
 const Card = ({ data }) => {
   const {
     id,
@@ -16,13 +16,20 @@ const Card = ({ data }) => {
     return (
       <Link to={`/movieDetails/${id}`}>
         <div className='Movie-card'>
-          <div className='card-img'>
-            <img
-              src={`https://image.tmdb.org/t/p/w342/${poster_path}`}
-              alt=''
-              srcSet=''
-            />
-          </div>
+          {poster_path ? (
+            <div className='card-img'>
+              <img
+                src={`https://image.tmdb.org/t/p/w342/${poster_path}`}
+                alt=''
+                srcSet=''
+              />
+            </div>
+          ) : (
+            <div className='card-img'>
+              <img src={no_image} alt='' srcSet='' />
+            </div>
+          )}
+
           <div className='details'>
             <div className='deText'>
               <div className='date'>

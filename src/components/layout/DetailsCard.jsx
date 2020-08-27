@@ -4,6 +4,7 @@ import ReactTooltip from "react-tooltip";
 import TrailerModal from "./TrailerModal";
 import "react-responsive-modal/styles.css";
 import { Modal } from "react-responsive-modal";
+import no_image from "../../assets/no_image.png";
 
 const DetailsCard = ({ path, details, modal, onOpenModal, onCloseModal }) => {
   const isDesktopOrLaptop = useMediaQuery({
@@ -24,7 +25,6 @@ const DetailsCard = ({ path, details, modal, onOpenModal, onCloseModal }) => {
     poster_path,
     backdrop_path,
   } = details;
-  console.log(runtime);
   return (
     <div>
       {isDesktopOrLaptop && (
@@ -35,13 +35,20 @@ const DetailsCard = ({ path, details, modal, onOpenModal, onCloseModal }) => {
           className='details-card'
         >
           <div className='details-wrapper'>
-            <div className='image'>
-              <img
-                src={`https://image.tmdb.org/t/p/original/${poster_path}`}
-                alt=''
-                srcSet=''
-              />
-            </div>
+            {poster_path ? (
+              <div className='image'>
+                <img
+                  src={`https://image.tmdb.org/t/p/original/${poster_path}`}
+                  alt=''
+                  srcSet=''
+                />
+              </div>
+            ) : (
+              <div className='image'>
+                <img src={no_image} alt='' srcSet='' />
+              </div>
+            )}
+
             <div className='genInfo'>
               <div className='info'>
                 <div className='Info-primary'>

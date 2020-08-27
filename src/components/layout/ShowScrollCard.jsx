@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import no_image from "../../assets/no_image.png";
 
 const ScrollCard = ({ data }) => {
   const {
@@ -17,13 +18,20 @@ const ScrollCard = ({ data }) => {
   return (
     <Link to={`/showDetails/${id}`}>
       <div className='Movie-card-scroll'>
-        <div className='card-img'>
-          <img
-            src={`https://image.tmdb.org/t/p/w342/${poster_path}`}
-            alt=''
-            srcSet=''
-          />
-        </div>
+        {poster_path ? (
+          <div className='card-img'>
+            <img
+              src={`https://image.tmdb.org/t/p/w342/${poster_path}`}
+              alt=''
+              srcSet=''
+            />
+          </div>
+        ) : (
+          <div className='card-img'>
+            <img src={no_image} alt='' srcSet='' />
+          </div>
+        )}
+
         <div className='details'>
           <div className='deText'>
             {release_date ? (

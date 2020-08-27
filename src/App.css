@@ -19,7 +19,15 @@ li {
   list-style-type: none;
 }
 a {
+  text-decoration: none !important;
+}
+a:-webkit-any-link {
+  color: var(--secondary-color);
+  cursor: pointer;
+}
+a:hover {
   text-decoration: none;
+  cursor: pointer;
 }
 input,
 input::-webkit-input-placeholder {
@@ -536,7 +544,6 @@ span {
 .details-card {
   min-width: 90vw;
   height: 60vh;
-  /* border: 3px solid red; */
 }
 .movie-details .genInfo,
 .show-details .genInfo {
@@ -555,6 +562,10 @@ span {
   align-items: center;
 }
 .overview {
+  display: -webkit-box;
+  -webkit-line-clamp: 8;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
   font-size: 12px;
   /* max-width: 80%; */
 }
@@ -666,6 +677,9 @@ span {
   margin: 1rem;
   width: 70%;
 }
+.similar-scroll {
+  color: var(--secondary-color) !important;
+}
 .similar-scroll-card img {
   cursor: pointer;
   width: 250px !important;
@@ -708,9 +722,9 @@ span {
   -webkit-transform: translate(-50%, -50%);
   -moz-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
-  -webkit-transition: all 0.3s ease-in-out 0s;
-  -moz-transition: all 0.3s ease-in-out 0s;
-  transition: all 0.3s ease-in-out 0s;
+  -webkit-transition: all 0.8s ease-in-out 0s;
+  -moz-transition: all 0.8s ease-in-out 0s;
+  transition: all 0.8s ease-in-out 0s;
 }
 .img-overlay {
   cursor: pointer;
@@ -723,11 +737,49 @@ span {
   bottom: 0;
   right: 0;
   opacity: 0;
-  -webkit-transition: all 0.4s ease-in-out 0s;
-  -moz-transition: all 0.4s ease-in-out 0s;
-  transition: all 0.4s ease-in-out 0s;
+  -webkit-transition: all 0.8s ease-in-out 0s;
+  -moz-transition: all 0.8s ease-in-out 0s;
+  transition: all 0.8s ease-in-out 0s;
+}
+.sim-scroll-img img {
+  width: 250px !important;
 }
 
+/* ******************************************************
+           Season Card
+******************************************************* */
+.season-card-image img {
+  display: block;
+  max-width: 120px;
+}
+
+.season-card-image {
+  display: block;
+}
+.seasons-card {
+  margin-top: 1.5rem;
+  border-radius: 10px;
+  width: 100%;
+  background: var(--tetiary-color);
+  display: flex;
+  align-items: center;
+}
+.seasons-card p {
+  font-size: 12px;
+}
+.seasons-card-info {
+  padding-left: 1rem;
+  padding-bottom: 2rem;
+}
+.season-info-upper {
+  padding-bottom: 1rem;
+}
+.season-info-lower {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
 /* ******************************************************
            Media Queries
 ******************************************************* */

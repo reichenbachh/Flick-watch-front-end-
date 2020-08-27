@@ -17,7 +17,6 @@ const DetailsShow = ({ details }) => {
   } = details;
   const extractLangauages = (languages) => {
     if (languages.length === 1) {
-      console.log(languages[0]);
       return languages[0];
     }
     const langs = languages.map((lang) => {
@@ -27,7 +26,6 @@ const DetailsShow = ({ details }) => {
   };
   const extractCreated = (created) => {
     if (created.length === 1) {
-      console.log(created[0].name);
       return created[0].name;
     }
     const langs = languages.map((lang) => {
@@ -36,7 +34,6 @@ const DetailsShow = ({ details }) => {
     return langs.join(",");
   };
   const extractNetworks = (networks) => {
-    console.log(networks);
     if (networks.length === 1) {
       return networks[0].name;
     }
@@ -55,9 +52,9 @@ const DetailsShow = ({ details }) => {
         <p>
           <span className='detail-title'> In production</span>:{" "}
           {in_production === true ? (
-            <i class='fas fa-check'></i>
+            <i className='fas fa-check'></i>
           ) : (
-            <i class='fas fa-times'></i>
+            <i className='fas fa-times'></i>
           )}
         </p>
         <p>
@@ -87,15 +84,7 @@ const DetailsShow = ({ details }) => {
           {number_of_seasons}
         </p>
         <p>
-          <span className='detail-title'> Last Episode </span>:
-          {last_episode_to_air.episode_number}
-        </p>
-        <p>
-          <span className='detail-title'> Next Episode </span>:
-          {next_episode_to_air.episode_number}
-        </p>
-        <p>
-          <span className='detail-title'> Next Episode </span>:
+          <span className='detail-title'> Networks</span>:
           {extractNetworks(networks)}
         </p>
       </div>
