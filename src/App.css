@@ -675,7 +675,7 @@ span {
 }
 .similar-wrapper {
   margin: 1rem;
-  width: 70%;
+  width: 100%;
 }
 .similar-scroll {
   color: var(--secondary-color) !important;
@@ -688,7 +688,7 @@ span {
   color: var(--primary-color);
 }
 .similar-scroll {
-  height: 70%;
+  width: 100%;
   display: flex;
   overflow-x: auto;
 }
@@ -745,6 +745,9 @@ span {
   width: 250px !important;
 }
 
+.details-right {
+  width: 70%;
+}
 /* ******************************************************
            Season Card
 ******************************************************* */
@@ -837,6 +840,28 @@ span {
   .details-wrapper {
     margin-top: 1.5rem;
     width: 90%;
+  }
+  .details-below {
+    flex-direction: column;
+    justify-content: center;
+    padding: 0.6rem;
+  }
+  .details-right {
+    width: 90%;
+  }
+  .similar-scroll {
+    order: 1;
+  }
+  .details-side {
+    display: flex;
+    justify-content: center;
+    width: 90%;
+    max-width: none;
+    margin: 0;
+  }
+  .details-list {
+    width: 80%;
+    text-align: center;
   }
   .runtime,
   .ratings {

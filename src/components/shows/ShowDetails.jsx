@@ -7,18 +7,19 @@ import DetailsCard from "../layout/DetailsCard";
 import Preloader from "../layout/Preloader";
 import DetailsShow from "../layout/DetailsShow";
 import Seasons from "../shows/Seasons";
+import SeasonCardSingle from "../shows/SeasonCardSingle";
+import SimilarScrollCardShow from "../layout/SimilarScrollCardShow";
 
 const ShowDetails = ({
   match,
-  tvShow: { loading, details, trailer },
+  tvShow: { loading, details, trailer, similar },
   getShowDetails,
   clearState,
 }) => {
   useEffect(() => {
     clearState();
     getShowDetails(match.params.id);
-    //eslint-disable-next-line
-  }, []);
+  }, [match.params.id]);
 
   const [modal, setModalState] = useState(false);
 
@@ -29,7 +30,6 @@ const ShowDetails = ({
   const onCloseModal = () => {
     setModalState(false);
   };
-
   if (loading === null || details === null || trailer === null) {
     return (
       <div id='trending_area_loader'>
@@ -56,15 +56,39 @@ const ShowDetails = ({
         id={match.params.id}
       />
       <div className='details-below'>
-        <div className='similar-wrapper'>
-          <h1>
-            Current<span className='title-span'> season</span>
-          </h1>
-          {details.seasons.map((season, index) => {
-            if (details.seasons.length - 2 === index) {
-              return <Seasons seasonInfo={season} key={season.id} />;
-            }
-          })}
+        <div className='details-right'>
+          <div className='similar-wrapper'>
+            <h1>
+              Current<span className='title-span'> season</span>
+            </h1>
+            {details.seasons.length === 1 ? (
+              <SeasonCardSingle
+                seasonInfo={details.seasons}
+                key={details.seasons.id}
+              />
+            ) : (
+              details.seasons.map((season, index) => {
+                if (details.seasons.length - 2 === index) {
+                  return <Seasons seasonInfo={season} key={season.id} />;
+                }
+              })
+            )}
+          </div>
+          {similar.results.length === 0 ? (
+            ""
+          ) : (
+            <div>
+              {" "}
+              <h1>
+                Similar<span className='title-span'> Shows</span>
+              </h1>
+              <div className='similar-scroll'>
+                {similar.results.map((data) => (
+                  <SimilarScrollCardShow key={data.id} data={data} />
+                ))}
+              </div>
+            </div>
+          )}
         </div>
         <div className='details'>
           <DetailsShow details={details} />

@@ -21,7 +21,6 @@ const MovieDetails = ({
     clearState();
     fetchMovieDetails(match.params.id);
   }, [match]);
-
   const [modal, setModalState] = useState(false);
 
   const onOpenModal = () => {
@@ -57,16 +56,23 @@ const MovieDetails = ({
         id={match.params.id}
       />
       <div className='details-below'>
-        <div className='similar-wrapper'>
-          <h1>
-            Similar<span className='title-span'>Movies</span>
-          </h1>
-          <div className='similar-scroll'>
-            {similar.results.map((data) => (
-              <SimilarScrollCard key={data.id} data={data} />
-            ))}
+        {similar.results.length === 0 ? (
+          ""
+        ) : (
+          <div className='details-right'>
+            <div className='similar-wrapper'>
+              <h1>
+                Similar<span className='title-span'>Movies</span>
+              </h1>
+
+              <div className='similar-scroll'>
+                {similar.results.map((data) => (
+                  <SimilarScrollCard key={data.id} data={data} />
+                ))}
+              </div>
+            </div>
           </div>
-        </div>
+        )}
 
         <div className='details'>
           <Details details={details} />

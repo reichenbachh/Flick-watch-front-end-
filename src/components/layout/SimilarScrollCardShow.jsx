@@ -2,7 +2,7 @@ import React from "react";
 import no_image_landscape from "../../assets/no_image_landscape.png";
 import { Link, withRouter } from "react-router-dom";
 
-const SimilarScrollCard = ({ data }) => {
+const SimilarScrollCardShow = ({ data }) => {
   const {
     backdrop_path,
     vote_average,
@@ -13,7 +13,7 @@ const SimilarScrollCard = ({ data }) => {
   } = data;
   console.log(data.length);
   return (
-    <Link to={`/movieDetails/${id}`}>
+    <Link to={`/showDetails/${id}`}>
       {" "}
       <div className='similar-scroll-card'>
         <div className='img-overlay'></div>
@@ -49,4 +49,4 @@ const SimilarScrollCard = ({ data }) => {
   );
 };
 
-export default withRouter(SimilarScrollCard);
+export default withRouter(SimilarScrollCardShow);

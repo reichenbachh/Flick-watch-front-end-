@@ -1,17 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import no_image from "../../assets/no_image.png";
+import no_image_symb from "../../assets/no_image_symb.png";
 const Card = ({ data }) => {
   const {
     id,
     media_type,
     original_language,
-
     title,
     vote_average,
     release_date,
     poster_path,
   } = data;
+  if (media_type === "person") {
+    return null;
+  }
   if (media_type === "movie") {
     return (
       <Link to={`/movieDetails/${id}`}>
@@ -26,7 +28,7 @@ const Card = ({ data }) => {
             </div>
           ) : (
             <div className='card-img'>
-              <img src={no_image} alt='' srcSet='' />
+              <img src={no_image_symb} alt='' srcSet='' />
             </div>
           )}
 
@@ -50,7 +52,7 @@ const Card = ({ data }) => {
               </p>
               <p>
                 <span>
-                  <i class='fas fa-plus'></i>
+                  <i className='fas fa-plus'></i>
                 </span>
               </p>
             </div>
@@ -58,8 +60,7 @@ const Card = ({ data }) => {
         </div>
       </Link>
     );
-  }
-  if (media_type === "tv") {
+  } else if (media_type === "tv") {
     return (
       <Link to={`/showDetails/${id}`}>
         <div className='Movie-card'>
@@ -90,7 +91,7 @@ const Card = ({ data }) => {
               </p>
               <p>
                 <span>
-                  <i class='fas fa-plus'></i>
+                  <i className='fas fa-plus'></i>
                 </span>
               </p>
             </div>
@@ -100,5 +101,4 @@ const Card = ({ data }) => {
     );
   }
 };
-
 export default Card;

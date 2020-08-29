@@ -1,8 +1,14 @@
 import React from "react";
 import no_image from "../../assets/no_image.png";
 
-const Seasons = ({ seasonInfo }) => {
-  const { poster_path, name, overview, air_date, episode_count } = seasonInfo;
+const SeasonCardSingle = ({ seasonInfo }) => {
+  const {
+    poster_path,
+    name,
+    overview,
+    air_date,
+    episode_count,
+  } = seasonInfo[0];
   return (
     <div className='seasons-card'>
       <div className='season-card-image'>
@@ -27,4 +33,4 @@ const Seasons = ({ seasonInfo }) => {
   );
 };
 
-export default Seasons;
+export default SeasonCardSingle;

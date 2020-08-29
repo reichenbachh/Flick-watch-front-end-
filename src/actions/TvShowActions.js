@@ -42,9 +42,12 @@ export const getShowDetails = (id) => async (dispatch) => {
     const showTrailer = await axios.get(
       `https://api.themoviedb.org/3/tv/${id}/videos?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US`
     );
+    const showSimilar = await axios.get(
+      `https://api.themoviedb.org/3/tv/${id}/similar?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US`
+    );
     dispatch({
       type: GET_TV_SHOW_DETAILS,
-      payload: [showDetails.data, showTrailer.data],
+      payload: [showDetails.data, showTrailer.data, showSimilar.data],
     });
   } catch (error) {
     dispatch({
