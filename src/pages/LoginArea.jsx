@@ -1,13 +1,21 @@
 import React from "react";
 import Nav from "../components/layout/Nav";
 import LoginPage from "./LoginPage";
-import LOGOw from "../assets/LOGOw.png";
+import {
+  ToastsContainer,
+  ToastsStore,
+  ToastsContainerPosition,
+} from "react-toasts";
 
 const LoginArea = () => {
   return (
     <div className='login-container'>
       <Nav />
-      <LoginPage />
+      <LoginPage ToastsStore={ToastsStore} />
+      <ToastsContainer
+        position={ToastsContainerPosition.TOP_RIGHT}
+        store={ToastsStore}
+      />
     </div>
   );
 };

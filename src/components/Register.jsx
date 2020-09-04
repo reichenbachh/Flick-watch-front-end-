@@ -1,11 +1,18 @@
 import React from "react";
-import { setFormType } from "../actions/authActions";
-import { connect } from "react-redux";
-const Register = ({ values, inputChange, nextStep, prevStep }) => {
+const Register = ({
+  values,
+  inputChange,
+  nextStep,
+  prevStep,
+  sendRegisterReq,
+}) => {
   const { userNameR, emailR, passwordR, passwordConR } = values;
   const toLogin = (e) => {
     e.preventDefault();
     nextStep();
+  };
+  const onSubmit = () => {
+    sendRegisterReq();
   };
   return (
     <div className='login-wrapper'>
@@ -51,7 +58,9 @@ const Register = ({ values, inputChange, nextStep, prevStep }) => {
             </div>
           </div>
           <div className='submitBtn'>
-            <button type='submit'>Register </button>
+            <button onClick={onSubmit} type='submit'>
+              Register{" "}
+            </button>
           </div>
           <div className='links'>
             <a href='#1' onClick={toLogin}>
@@ -64,4 +73,4 @@ const Register = ({ values, inputChange, nextStep, prevStep }) => {
   );
 };
 
-export default connect(null, { setFormType })(Register);
+export default Register;

@@ -1,15 +1,24 @@
-import {} from "../actions/types";
+import { REGISTER_USER, SET_ERROR } from "../actions/types";
 
 const initialState = {
-  formType: "signIn",
+  isAuthenticated: null,
+  error: null,
+  message: null,
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case 3:
+    case REGISTER_USER:
       return {
         ...state,
-        formType: action.payload,
+        isAuthenticated: action.payload.success,
+        message: action.payload.data,
+      };
+    case SET_ERROR:
+      console.log(action.payload);
+      return {
+        ...state,
+        error: action.payload,
       };
     default:
       return state;

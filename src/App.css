@@ -173,7 +173,7 @@ body::-webkit-scrollbar-thumb,
   border: none;
   outline: none;
   background: #333;
-  transition: 0.7s;
+  transition: 0.2;
 }
 .login-from .input-area input:focus {
   outline: none !important;

@@ -1,16 +1,18 @@
 import React, { useState } from "react";
+
 import Login from "../components/Login";
 import Register from "../components/Register";
 import ForgetPassword from "../components/ForgetPassword";
 
 import { connect } from "react-redux";
+import { RegisterUser } from "../actions/authActions";
 
-const LoginPage = ({ auth }) => {
+const LoginPage = ({ auth, ToastsStore, RegisterUser }) => {
   const [formState, setFormState] = useState({
     step: 0,
     userNameL: "",
     passwordL: "",
-    usernameR: "",
+    userNameR: "",
     emailR: "",
     passwordR: "",
     passwordConR: "",
@@ -29,15 +31,38 @@ const LoginPage = ({ auth }) => {
     setFormState({ ...formState, step: step - 1 });
   };
 
+  const sendRegisterReq = () => {
+    let username = formState.userNameR;
+    let email = formState.emailR;
+    let password = formState.passwordR;
+    let passwordConfirm = formState.passwordConR;
+    if (
+      username === "" ||
+      email === "" ||
+      password === "" ||
+      passwordConfirm === ""
+    ) {
+      ToastsStore.error("Please fill all the fields");
+    } else if (password !== passwordConfirm) {
+      ToastsStore.error("Passwords do not match");
+    }
+    let userData = { username, email, password };
+    console.log(userData);
+    RegisterUser(userData);
+  };
+
   const values = { ...formState };
   switch (values.step) {
     case 0:
       return (
-        <Register
-          inputChange={inputChange}
-          values={values}
-          nextStep={nextStep}
-        />
+        <div>
+          <Register
+            sendRegisterReq={sendRegisterReq}
+            inputChange={inputChange}
+            values={values}
+            nextStep={nextStep}
+          />
+        </div>
       );
     case 1:
       return (
@@ -64,4 +89,4 @@ const mapStateToProps = (state) => ({
   auth: state.auth,
 });
 
-export default connect(mapStateToProps)(LoginPage);
+export default connect(mapStateToProps, { RegisterUser })(LoginPage);
