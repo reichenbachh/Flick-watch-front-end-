@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import Login from "../components/Login";
 import Register from "../components/Register";
@@ -7,7 +7,16 @@ import ForgetPassword from "../components/ForgetPassword";
 import { connect } from "react-redux";
 import { RegisterUser } from "../actions/authActions";
 
-const LoginPage = ({ auth, ToastsStore, RegisterUser }) => {
+const LoginPage = ({
+  auth: { isAuthenticated, error, message },
+  ToastsStore,
+  RegisterUser,
+}) => {
+  useEffect(() => {
+    if (error) {
+      ToastsStore.error(error);
+    }
+  }, [error]);
   const [formState, setFormState] = useState({
     step: 0,
     userNameL: "",
@@ -18,6 +27,7 @@ const LoginPage = ({ auth, ToastsStore, RegisterUser }) => {
     passwordConR: "",
     emailForgot: "",
   });
+  const [loadState, setLoadState] = useState(null);
 
   const inputChange = (input) => (e) => {
     setFormState({ ...formState, [input]: e.target.value });
@@ -45,10 +55,22 @@ const LoginPage = ({ auth, ToastsStore, RegisterUser }) => {
       ToastsStore.error("Please fill all the fields");
     } else if (password !== passwordConfirm) {
       ToastsStore.error("Passwords do not match");
+      return;
+    } else {
+      let userData = { username, email, password };
+
+      console.log(userData);
+      RegisterUser(userData);
     }
-    let userData = { username, email, password };
-    console.log(userData);
-    RegisterUser(userData);
+  };
+
+  //hanldes register form execptions
+  const handleRegisterError = () => {
+    if (error) {
+      let errorMessage = error.split(":");
+      ToastsStore.error(errorMessage[2]);
+      console.log(errorMessage);
+    }
   };
 
   const values = { ...formState };
@@ -57,6 +79,8 @@ const LoginPage = ({ auth, ToastsStore, RegisterUser }) => {
       return (
         <div>
           <Register
+            handleRegisterError={handleRegisterError}
+            isAuthenticated={isAuthenticated}
             sendRegisterReq={sendRegisterReq}
             inputChange={inputChange}
             values={values}

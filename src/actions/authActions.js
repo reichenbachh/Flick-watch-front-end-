@@ -1,4 +1,4 @@
-import { REGISTER_USER, SET_ERROR } from "./types";
+import { REGISTER_SUCCESS, REGISTER_FAILED } from "./types";
 import axios from "axios";
 
 export const RegisterUser = (FormData) => async (dispatch) => {
@@ -14,16 +14,16 @@ export const RegisterUser = (FormData) => async (dispatch) => {
       FormData,
       config
     );
-    console.log("YEs");
     console.log(res.data);
     dispatch({
-      type: REGISTER_USER,
+      type: REGISTER_SUCCESS,
       payload: res.data,
     });
   } catch (error) {
+    console.log(error.response.data.error);
     dispatch({
-      type: SET_ERROR,
-      payload: error,
+      type: REGISTER_FAILED,
+      payload: error.response,
     });
   }
 };

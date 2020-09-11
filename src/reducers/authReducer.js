@@ -1,24 +1,27 @@
-import { REGISTER_USER, SET_ERROR } from "../actions/types";
+import { REGISTER_SUCCESS, REGISTER_FAILED } from "../actions/types";
 
 const initialState = {
   isAuthenticated: null,
   error: null,
   message: null,
+  loading: null,
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case REGISTER_USER:
+    case REGISTER_SUCCESS:
       return {
         ...state,
-        isAuthenticated: action.payload.success,
+        isAuthenticated: true,
         message: action.payload.data,
       };
-    case SET_ERROR:
+    case REGISTER_FAILED:
       console.log(action.payload);
       return {
         ...state,
-        error: action.payload,
+        isAuthenticated: false,
+        loading: false,
+        error: action.payload.data.error,
       };
     default:
       return state;

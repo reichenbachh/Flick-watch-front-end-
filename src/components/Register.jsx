@@ -1,17 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useHistory } from "react-router-dom";
 const Register = ({
   values,
   inputChange,
   nextStep,
   prevStep,
   sendRegisterReq,
+  handleRegisterError,
+  isAuthenticated,
 }) => {
   const { userNameR, emailR, passwordR, passwordConR } = values;
   const toLogin = (e) => {
     e.preventDefault();
     nextStep();
   };
-  const onSubmit = () => {
+  const appHistory = useHistory();
+  const onSubmit = async () => {
     sendRegisterReq();
   };
   return (
