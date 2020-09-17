@@ -5,16 +5,23 @@ import Register from "../components/Register";
 import ForgetPassword from "../components/ForgetPassword";
 
 import { connect } from "react-redux";
-import { RegisterUser } from "../actions/authActions";
+import { RegisterUser, clearError, loadUser } from "../actions/authActions";
 
 const LoginPage = ({
+  history,
   auth: { isAuthenticated, error, message },
   ToastsStore,
   RegisterUser,
+  clearError,
+  loadUser,
 }) => {
   useEffect(() => {
+    if (isAuthenticated) {
+      history.push("/trending");
+    }
     if (error) {
       ToastsStore.error(error);
+      clearError();
     }
   }, [error]);
   const [formState, setFormState] = useState({
@@ -27,7 +34,6 @@ const LoginPage = ({
     passwordConR: "",
     emailForgot: "",
   });
-  const [loadState, setLoadState] = useState(null);
 
   const inputChange = (input) => (e) => {
     setFormState({ ...formState, [input]: e.target.value });
@@ -113,4 +119,6 @@ const mapStateToProps = (state) => ({
   auth: state.auth,
 });
 
-export default connect(mapStateToProps, { RegisterUser })(LoginPage);
+export default connect(mapStateToProps, { RegisterUser, clearError, loadUser })(
+  LoginPage
+);
