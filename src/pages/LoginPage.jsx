@@ -4,6 +4,7 @@ import Login from "../components/Login";
 import Register from "../components/Register";
 import ForgetPassword from "../components/ForgetPassword";
 
+import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { RegisterUser, clearError, loadUser } from "../actions/authActions";
 
@@ -13,9 +14,9 @@ const LoginPage = ({
   ToastsStore,
   RegisterUser,
   clearError,
-  loadUser,
 }) => {
   useEffect(() => {
+    //called when isAuthenticated state changes to true when login in authorised
     if (isAuthenticated) {
       history.push("/trending");
     }
@@ -23,7 +24,7 @@ const LoginPage = ({
       ToastsStore.error(error);
       clearError();
     }
-  }, [error]);
+  }, [error, isAuthenticated]);
   const [formState, setFormState] = useState({
     step: 0,
     userNameL: "",
@@ -35,6 +36,7 @@ const LoginPage = ({
     emailForgot: "",
   });
 
+  // Handles form change based on link clicked,
   const inputChange = (input) => (e) => {
     setFormState({ ...formState, [input]: e.target.value });
   };
@@ -47,6 +49,7 @@ const LoginPage = ({
     setFormState({ ...formState, step: step - 1 });
   };
 
+  //Handles registration
   const sendRegisterReq = () => {
     let username = formState.userNameR;
     let email = formState.emailR;
@@ -67,6 +70,19 @@ const LoginPage = ({
 
       console.log(userData);
       RegisterUser(userData);
+    }
+  };
+
+  //Handles Login
+  const sendLoginReq = () => {
+    let username = formState.userNameL;
+    let password = formState.passwordL;
+
+    if (username === "" || password === "") {
+      ToastsStore.error("Please fill all fields");
+    } else {
+      let userData = { username, password };
+      console.table(userData);
     }
   };
 
@@ -97,6 +113,7 @@ const LoginPage = ({
     case 1:
       return (
         <Login
+          sendLoginReq={sendLoginReq}
           inputChange={inputChange}
           prevStep={prevStep}
           values={values}
@@ -120,5 +137,5 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, { RegisterUser, clearError, loadUser })(
-  LoginPage
+  withRouter(LoginPage)
 );

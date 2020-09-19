@@ -4,13 +4,15 @@ import {
   CLEAR_ERROR,
   AUTH_FAILED,
   AUTH_SUCCESS,
+  LOGIN_FAILED,
+  LOGIN_SUCCESS,
 } from "./types";
 import axios from "axios";
 
 export const RegisterUser = (FormData) => async (dispatch) => {
   try {
-    axios.defaults.withCredentials = true;
     const config = {
+      withCredentials: true,
       headers: {
         "Content-Type": "application/json",
       },
@@ -26,9 +28,9 @@ export const RegisterUser = (FormData) => async (dispatch) => {
       type: REGISTER_SUCCESS,
       payload: res.data,
     });
-
-    loadUser();
+    dispatch(loadUser());
   } catch (error) {
+    console.log(error.response);
     dispatch({
       type: REGISTER_FAILED,
       payload: error.response,
@@ -36,15 +38,44 @@ export const RegisterUser = (FormData) => async (dispatch) => {
   }
 };
 
+export const loginUser = (FormData) => async (dispatch) => {
+  try {
+    const config = {
+      withCredentials: true,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    const res = await axios.post(
+      "http://localhost:5000/flickApi/v1/auth/login",
+      FormData,
+      config
+    );
+
+    dispatch({
+      type: LOGIN_SUCCESS,
+      payload: res.data,
+    });
+  } catch (error) {
+    dispatch({
+      type: LOGIN_FAILED,
+      payload: error.response,
+    });
+  }
+};
 export const loadUser = () => async (dispatch) => {
   try {
-    axios.defaults.withCredentials = true;
-    const res = await axios.get("http://localhost:5000/flickApi/v1/auth/getMe");
+    const res = await axios.get(
+      "http://localhost:5000/flickApi/v1/auth/getMe",
+      { withCredentials: true }
+    );
     dispatch({
       type: AUTH_SUCCESS,
       payload: res.data,
     });
   } catch (error) {
+    console.log(error);
     dispatch({
       type: AUTH_FAILED,
       payload: error.response,

@@ -784,6 +784,46 @@ span {
   overflow: hidden;
 }
 /* ******************************************************
+           drop down menu
+******************************************************* */
+
+.nav div .dropDownTitle {
+  padding: 0 !important;
+}
+.nav div .dropDownContent {
+  padding-top: 0 !important;
+}
+.nav div #dropDown {
+  padding: 0;
+}
+#dropDown:hover .dropDownContent {
+  display: block;
+}
+.dropDownContent {
+  max-width: 120px;
+  background: var(--tetiary-color);
+  display: none;
+  position: absolute;
+}
+
+.dropDownContent ul li {
+  color: var(--secondary-color);
+  border-bottom: 1px solid var(--primary-color);
+}
+.dropDownContent ul li:hover {
+  color: var(--primary-color) !important ;
+}
+
+.dropDownContent div {
+  padding: 0;
+}
+
+.dropDownContent ul li {
+  display: block;
+  /* padding: 0.2; */
+}
+
+/* ******************************************************
            Media Queries
 ******************************************************* */
 @media screen and (max-width: 1224px) {

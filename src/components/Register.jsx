@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import React from "react";
 const Register = ({
   values,
   inputChange,
@@ -14,7 +13,6 @@ const Register = ({
     e.preventDefault();
     nextStep();
   };
-  const appHistory = useHistory();
   const onSubmit = async () => {
     sendRegisterReq();
   };

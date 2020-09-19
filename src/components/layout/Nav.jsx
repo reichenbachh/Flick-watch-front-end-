@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
 import BurgerNav from "./BurgerNav";
 import { useMediaQuery } from "react-responsive";
 import { Link } from "react-router-dom";
 import LOGOw from "../../assets/LOGOw.png";
+import DropDownMenu from "./DropDownMenu";
 
-const Nav = () => {
+const Nav = ({ auth: { isAuthenticated, user } }) => {
   const isDesktopOrLaptop = useMediaQuery({
     query: "(min-width: 1224px)",
   });
@@ -36,7 +38,20 @@ const Nav = () => {
                   <Link to='/movies'>Movies</Link>
                 </li>
                 <li>
-                  <Link to='/login'>Sign Up</Link>
+                  {isAuthenticated && user ? (
+                    <Link to='/user/:username'>
+                      <DropDownMenu userName={user.username} />
+                    </Link>
+                  ) : (
+                    <Link to='/login'>Sign Up</Link>
+                  )}
+                </li>
+                <li>
+                  {isAuthenticated && user ? (
+                    <Link to='/user/:username'>{user.username}</Link>
+                  ) : (
+                    <Link to='/login'>Sign Up</Link>
+                  )}
                 </li>
               </ul>
             </div>
@@ -61,4 +76,8 @@ const Nav = () => {
   );
 };
 
-export default Nav;
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+});
+
+export default connect(mapStateToProps)(Nav);

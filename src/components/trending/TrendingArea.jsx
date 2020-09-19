@@ -4,11 +4,17 @@ import Card from "../layout/Card";
 import PaginateLinks from "../layout/PaginateLinks";
 import Nav from "../layout/Nav";
 import { getTrending } from "../../actions/TrendingActions";
+import { loadUser } from "../../actions/authActions";
 import Preloader from "../layout/Preloader";
 
-const TrendingArea = ({ trending: { loading, trending }, getTrending }) => {
+const TrendingArea = ({
+  trending: { loading, trending },
+  getTrending,
+  loadUser,
+}) => {
   useEffect(() => {
     getTrending();
+    loadUser();
     //eslint-disable-next-line
   }, []);
 
@@ -44,6 +50,9 @@ const TrendingArea = ({ trending: { loading, trending }, getTrending }) => {
 
 const mapStateToProps = (state) => ({
   trending: state.trending,
+  auth: state.auth,
 });
 
-export default connect(mapStateToProps, { getTrending })(TrendingArea);
+export default connect(mapStateToProps, { getTrending, loadUser })(
+  TrendingArea
+);
