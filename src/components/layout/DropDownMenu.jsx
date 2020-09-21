@@ -1,24 +1,23 @@
 import React from "react";
+import { connect } from "react-redux";
+import { logoutUser } from "../../actions/authActions";
 
-const DropDownMenu = ({ userName }) => {
+const DropDownMenu = ({ userName, logoutUser }) => {
   return (
     <div id='dropDown'>
       <div className='dropDownTitle'>{userName}</div>
       <div className='dropDownContent'>
         <ul className='dropMenuItems'>
-          <li>
-            Logout <i class='fas fa-sign-out-alt'></i>
-          </li>
-          <li>
-            Profile <i class='fas fa-user'></i>{" "}
-          </li>
-          <li>
-            Tracked Shows <i class='fas fa-plus'></i>
-          </li>
+          <li onClick={() => logoutUser()}>Logout</li>
+          <li>Profile</li>
+          <li>Tracked Shows</li>
         </ul>
       </div>
     </div>
   );
 };
 
-export default DropDownMenu;
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+});
+export default connect(mapStateToProps, { logoutUser })(DropDownMenu);

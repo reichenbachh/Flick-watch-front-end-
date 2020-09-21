@@ -6,12 +6,18 @@ import ForgetPassword from "../components/ForgetPassword";
 
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { RegisterUser, clearError, loadUser } from "../actions/authActions";
+import {
+  RegisterUser,
+  clearError,
+  loadUser,
+  loginUser,
+} from "../actions/authActions";
 
 const LoginPage = ({
   history,
   auth: { isAuthenticated, error, message },
   ToastsStore,
+  loginUser,
   RegisterUser,
   clearError,
 }) => {
@@ -82,7 +88,7 @@ const LoginPage = ({
       ToastsStore.error("Please fill all fields");
     } else {
       let userData = { username, password };
-      console.table(userData);
+      loginUser(userData);
     }
   };
 
@@ -136,6 +142,9 @@ const mapStateToProps = (state) => ({
   auth: state.auth,
 });
 
-export default connect(mapStateToProps, { RegisterUser, clearError, loadUser })(
-  withRouter(LoginPage)
-);
+export default connect(mapStateToProps, {
+  RegisterUser,
+  clearError,
+  loadUser,
+  loginUser,
+})(withRouter(LoginPage));

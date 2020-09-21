@@ -6,6 +6,7 @@ import {
   AUTH_SUCCESS,
   LOGIN_FAILED,
   LOGIN_SUCCESS,
+  LOG_OUT,
 } from "../actions/types";
 
 const initialState = {
@@ -14,6 +15,7 @@ const initialState = {
   error: null,
   message: null,
   loading: null,
+  user: null,
 };
 
 export default (state = initialState, action) => {
@@ -55,6 +57,14 @@ export default (state = initialState, action) => {
         isAuthenticated: null,
         loading: false,
         error: action.payload.data.error,
+      };
+    case LOG_OUT:
+      return {
+        ...state,
+        isAuthenticated: false,
+        loading: null,
+        user: null,
+        error: null,
       };
     case CLEAR_ERROR:
       console.log(true);

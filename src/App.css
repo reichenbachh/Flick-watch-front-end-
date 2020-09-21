@@ -800,7 +800,7 @@ span {
   display: block;
 }
 .dropDownContent {
-  max-width: 120px;
+  max-width: 115px;
   background: var(--tetiary-color);
   display: none;
   position: absolute;

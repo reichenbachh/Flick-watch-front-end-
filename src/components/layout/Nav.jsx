@@ -39,16 +39,9 @@ const Nav = ({ auth: { isAuthenticated, user } }) => {
                 </li>
                 <li>
                   {isAuthenticated && user ? (
-                    <Link to='/user/:username'>
+                    <a href='#!'>
                       <DropDownMenu userName={user.username} />
-                    </Link>
-                  ) : (
-                    <Link to='/login'>Sign Up</Link>
-                  )}
-                </li>
-                <li>
-                  {isAuthenticated && user ? (
-                    <Link to='/user/:username'>{user.username}</Link>
+                    </a>
                   ) : (
                     <Link to='/login'>Sign Up</Link>
                   )}

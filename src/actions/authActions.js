@@ -6,6 +6,7 @@ import {
   AUTH_SUCCESS,
   LOGIN_FAILED,
   LOGIN_SUCCESS,
+  LOG_OUT,
 } from "./types";
 import axios from "axios";
 
@@ -64,6 +65,24 @@ export const loginUser = (FormData) => async (dispatch) => {
     });
   }
 };
+
+export const logoutUser = () => async (dispatch) => {
+  try {
+    const res = await axios.get(
+      "http://localhost:5000/flickApi/v1/auth/logout",
+      {
+        withCredentials: true,
+      }
+    );
+    console.log(res.data);
+    dispatch({
+      type: LOG_OUT,
+    });
+  } catch (error) {
+    console.log(error.respon);
+  }
+};
+
 export const loadUser = () => async (dispatch) => {
   try {
     const res = await axios.get(
