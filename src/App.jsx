@@ -7,6 +7,7 @@ import MoviePage from "./components/movie/MoviePage";
 import ShowsPage from "./components/shows/ShowsPage";
 import MovieDetails from "./components/movie/MovieDetails";
 import ShowDetails from "./components/shows/ShowDetails";
+import ResetPassword from "./components/ResetPassword";
 import {
   BrowserRouter as Router,
   Switch,
@@ -37,6 +38,11 @@ function App({ loadUser }) {
             component={withRouter(MovieDetails)}
           />
           <Route exact path='/showDetails/:id' component={ShowDetails} />
+          <Route
+            exact
+            path='/passwordReset/:resetToken'
+            component={ResetPassword}
+          />
         </Switch>
       </div>
     </Router>
