@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import Login from "../components/Login";
 import Register from "../components/Register";
 import ForgetPassword from "../components/ForgetPassword";
+import ResetPassword from "../components/ResetPassword";
 
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
@@ -130,6 +131,7 @@ const LoginPage = ({
       return (
         <ForgetPassword
           inputChange={inputChange}
+          nextStep={nextStep}
           prevStep={prevStep}
           values={values}
         />
