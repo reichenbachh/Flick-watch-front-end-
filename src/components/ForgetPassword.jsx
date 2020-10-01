@@ -1,5 +1,6 @@
 import React from "react";
-const ForgetPassword = ({ prevStep }) => {
+const ForgetPassword = ({ prevStep, values, inputChange, sendEmail }) => {
+  const { emailForgot } = values;
   const toLogin = () => {
     prevStep();
   };
@@ -8,10 +9,18 @@ const ForgetPassword = ({ prevStep }) => {
       <div className='forgetPassCard'>
         <h4>Forget Password</h4>
         <div className='emailPass'>
-          <input type='email' placeholder='Enter your email' required />
+          <input
+            type='email'
+            placeholder='Enter your email'
+            value={emailForgot}
+            onChange={inputChange("emailForgot")}
+            required
+          />
         </div>
         <div className='submitPass'>
-          <button type='submit'>Reset Password</button>
+          <button onClick={() => sendEmail()} type='submit'>
+            Reset Password
+          </button>
         </div>
         <div className='links'>
           <a href='#1' onClick={toLogin}>

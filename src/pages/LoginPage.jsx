@@ -12,6 +12,7 @@ import {
   clearError,
   loadUser,
   loginUser,
+  sendResetEmail,
 } from "../actions/authActions";
 
 const LoginPage = ({
@@ -20,7 +21,9 @@ const LoginPage = ({
   ToastsStore,
   loginUser,
   RegisterUser,
+  sendResetEmail,
   clearError,
+  user,
 }) => {
   useEffect(() => {
     //called when isAuthenticated state changes to true when login in authorised
@@ -31,7 +34,11 @@ const LoginPage = ({
       ToastsStore.error(error);
       clearError();
     }
-  }, [error, isAuthenticated]);
+
+    if (message) {
+      ToastsStore.success(message);
+    }
+  }, [error, isAuthenticated, message]);
   const [formState, setFormState] = useState({
     step: 0,
     userNameL: "",
@@ -82,15 +89,34 @@ const LoginPage = ({
 
   //Handles Login
   const sendLoginReq = () => {
-    let username = formState.userNameL;
+    let loginInput = formState.userNameL;
     let password = formState.passwordL;
 
-    if (username === "" || password === "") {
+    if (loginInput === "" || password === "") {
       ToastsStore.error("Please fill all fields");
     } else {
-      let userData = { username, password };
-      loginUser(userData);
+      const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      //test input string with regex to check if its an email or username
+      //@todo
+      //find more suitable approcah
+      const isEmail = emailRegex.exec(loginInput);
+      if (isEmail) {
+        let userData = { email: loginInput, password };
+        loginUser(userData);
+      } else {
+        let userData = { username: loginInput, password };
+        loginUser(userData);
+      }
     }
+  };
+
+  //send email to server for password reset
+  const sendEmail = () => {
+    let email = formState.emailForgot;
+    if (email === "") {
+      ToastsStore.error("Please enter your email");
+    }
+    sendResetEmail({ email });
   };
 
   //hanldes register form execptions
@@ -130,6 +156,7 @@ const LoginPage = ({
     case 2:
       return (
         <ForgetPassword
+          sendEmail={sendEmail}
           inputChange={inputChange}
           nextStep={nextStep}
           prevStep={prevStep}
@@ -149,4 +176,5 @@ export default connect(mapStateToProps, {
   clearError,
   loadUser,
   loginUser,
+  sendResetEmail,
 })(withRouter(LoginPage));

@@ -60,7 +60,7 @@ const Nav = ({ auth: { isAuthenticated, user } }) => {
               </Link>
             </div>
             <div className='menu'>
-              <BurgerNav />
+              <BurgerNav isAuthenticated={isAuthenticated} user={user} />
             </div>
           </div>
         </div>

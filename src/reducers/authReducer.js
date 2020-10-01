@@ -7,6 +7,10 @@ import {
   LOGIN_FAILED,
   LOGIN_SUCCESS,
   LOG_OUT,
+  RESET_FAILED,
+  RESET_SUCESS,
+  RESET_PASS_FAILED,
+  RESET_PASS_SUCESS,
 } from "../actions/types";
 
 const initialState = {
@@ -66,8 +70,24 @@ export default (state = initialState, action) => {
         user: null,
         error: null,
       };
+    case RESET_SUCESS:
+      console.log(action.payload);
+      return {
+        ...state,
+        message: action.payload.message,
+      };
+    case RESET_FAILED:
+      console.log(action.payload.data.error);
+      return {
+        ...state,
+        error: action.payload.data.error,
+      };
+    case RESET_PASS_SUCESS:
+      return {
+        ...state,
+        isAuthenticated: true,
+      };
     case CLEAR_ERROR:
-      console.log(true);
       return {
         ...state,
         error: null,

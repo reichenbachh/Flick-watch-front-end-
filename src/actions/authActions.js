@@ -7,6 +7,10 @@ import {
   LOGIN_FAILED,
   LOGIN_SUCCESS,
   LOG_OUT,
+  RESET_FAILED,
+  RESET_SUCESS,
+  RESET_PASS_FAILED,
+  RESET_PASS_SUCESS,
 } from "./types";
 import axios from "axios";
 
@@ -54,11 +58,13 @@ export const loginUser = (FormData) => async (dispatch) => {
       config
     );
 
+    console.log(res.data);
     dispatch({
       type: LOGIN_SUCCESS,
       payload: res.data,
     });
   } catch (error) {
+    console.log(error.response);
     dispatch({
       type: LOGIN_FAILED,
       payload: error.response,
@@ -97,6 +103,54 @@ export const loadUser = () => async (dispatch) => {
     console.log(error);
     dispatch({
       type: AUTH_FAILED,
+      payload: error.response,
+    });
+  }
+};
+export const sendResetEmail = (FormData) => async (dispatch) => {
+  try {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    const res = await axios.post(
+      "http://localhost:5000/flickApi/v1/auth/sendResetMail",
+      FormData,
+      config
+    );
+
+    dispatch({
+      type: RESET_SUCESS,
+      payload: res.data,
+    });
+  } catch (error) {
+    dispatch({
+      type: RESET_FAILED,
+      payload: error.response,
+    });
+  }
+};
+
+export const resetPassword = (FormData) => async (dispatch) => {
+  try {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    const res = await axios.post(
+      "http://localhost:5000/flickApi/v1/auth/resetPassword",
+      FormData,
+      config
+    );
+    dispatch({
+      type: RESET_PASS_SUCESS,
+      payload: res.data,
+    });
+  } catch (error) {
+    dispatch({
+      type: RESET_PASS_FAILED,
       payload: error.response,
     });
   }
