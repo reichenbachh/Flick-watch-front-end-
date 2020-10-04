@@ -85,7 +85,7 @@ export default (state = initialState, action) => {
     case RESET_PASS_SUCESS:
       return {
         ...state,
-        isAuthenticated: true,
+        // isAuthenticated: true,
       };
     case CLEAR_ERROR:
       return {

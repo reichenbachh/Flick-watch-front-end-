@@ -119,7 +119,7 @@ export const sendResetEmail = (FormData) => async (dispatch) => {
       FormData,
       config
     );
-
+    console.log(res.data);
     dispatch({
       type: RESET_SUCESS,
       payload: res.data,
@@ -132,23 +132,26 @@ export const sendResetEmail = (FormData) => async (dispatch) => {
   }
 };
 
-export const resetPassword = (FormData) => async (dispatch) => {
+export const resetPassword = (FormData, resetToken) => async (dispatch) => {
   try {
     const config = {
       headers: {
+        withCredentials: true,
         "Content-Type": "application/json",
       },
     };
-    const res = await axios.post(
-      "http://localhost:5000/flickApi/v1/auth/resetPassword",
+    const res = await axios.put(
+      `http://localhost:5000/flickApi/v1/auth/resetPassword/${resetToken}`,
       FormData,
       config
     );
+    console.log(res.data);
     dispatch({
       type: RESET_PASS_SUCESS,
       payload: res.data,
     });
   } catch (error) {
+    console.log(error.response);
     dispatch({
       type: RESET_PASS_FAILED,
       payload: error.response,

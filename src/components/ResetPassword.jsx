@@ -1,6 +1,12 @@
 import React, { useState } from "react";
-
-const ResetPassword = () => {
+import { connect } from "react-redux";
+import {
+  ToastsContainer,
+  ToastsStore,
+  ToastsContainerPosition,
+} from "react-toasts";
+import { resetPassword } from "../actions/authActions";
+const ResetPassword = ({ resetPassword, match }) => {
   const [resetFormState, setResetFormState] = useState({
     emailResetPass: "",
     emailResetPassConfirm: "",
@@ -8,6 +14,19 @@ const ResetPassword = () => {
   const { emailResetPass, emailResetPassConfirm } = resetFormState;
   const handleChange = (e) => {
     setResetFormState({ ...resetFormState, [e.target.name]: e.target.value });
+  };
+  const handleReset = () => {
+    let resetToken = match.params.resetToken;
+    let password = resetFormState.emailResetPass;
+    let passwordConfirm = resetFormState.emailResetPassConfirm;
+    if (password !== passwordConfirm) {
+      ToastsStore.error("Passwords dont match");
+    } else if (password === "" || passwordConfirm === "") {
+      ToastsStore.error("Please fill all fields");
+    } else {
+      resetPassword({ password }, resetToken);
+      console.log(resetToken, { password });
+    }
   };
   return (
     <div className='resetForm'>
@@ -35,19 +54,18 @@ const ResetPassword = () => {
             />
           </div>
           <div className='submitPass'>
-            <button
-              onClick={() => {
-                console.log(emailResetPassConfirm, emailResetPassConfirm);
-              }}
-              type='submit'
-            >
+            <button onClick={() => handleReset()} type='submit'>
               Reset Password
             </button>
           </div>
         </div>
       </div>
+      <ToastsContainer
+        position={ToastsContainerPosition.TOP_RIGHT}
+        store={ToastsStore}
+      />
     </div>
   );
 };
 
-export default ResetPassword;
+export default connect(null, { resetPassword })(ResetPassword);
