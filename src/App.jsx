@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import Home from "./pages/Home";
 import LoginArea from "./pages/LoginArea";
+import Search from "./components/search/Search";
 import TrendingArea from "./components/trending/TrendingArea";
 import MoviePage from "./components/movie/MoviePage";
 import ShowsPage from "./components/shows/ShowsPage";
@@ -17,6 +18,7 @@ import {
 import { loadUser } from "./actions/authActions";
 
 import "./App.css";
+import Nav from "./components/layout/Nav";
 
 function App({ loadUser }) {
   useEffect(() => {
@@ -43,6 +45,7 @@ function App({ loadUser }) {
             path='/passwordReset/:resetToken'
             component={ResetPassword}
           />
+          <Route exact path='/search' component={Search} />
         </Switch>
       </div>
     </Router>

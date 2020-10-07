@@ -26,3 +26,7 @@ export const AUTH_SUCCESS = "AUTH_SUCCESS";
 export const AUTH_FAILED = "AUTH_FAILED";
 export const REGISTER_FAILED = "REGISTER_FAILED";
 export const REGISTER_USER = "REGISTER_USER";
+
+//Other Actions
+export const SEARCH_SUCESS = "SEARCH_SUCESS";
+export const SEARCH_FAILED = "SEARCH_FAILED";
