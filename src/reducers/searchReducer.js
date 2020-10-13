@@ -2,6 +2,7 @@ import { SEARCH_FAILED, SEARCH_SUCESS, SET_LOADING } from "../actions/types";
 const initialState = {
   loading: null,
   searchData: null,
+  totalPages: null,
   error: null,
 };
 
@@ -12,6 +13,7 @@ export default (state = initialState, action) => {
         ...state,
         loading: false,
         searchData: action.payload,
+        totalPages: action.payload.total_pages,
       };
     case SEARCH_FAILED:
       return {

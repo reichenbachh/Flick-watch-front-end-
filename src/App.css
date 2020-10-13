@@ -867,6 +867,9 @@ span {
   color: #fff;
   font-size: 25px;
 }
+.radio {
+  padding: 0.5rem 1rem;
+}
 
 /* ******************************************************
            Media Queries
@@ -965,6 +968,21 @@ span {
   }
   .options {
     margin-top: 0.2rem;
+  }
+  .search-wrapper {
+    align-items: center;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+  .filter-options {
+    display: flex;
+    justify-content: space-around;
+  }
+  .search_box {
+    display: flex;
+    justify-content: center;
   }
 }
 @media screen and (max-width: 650px) {
