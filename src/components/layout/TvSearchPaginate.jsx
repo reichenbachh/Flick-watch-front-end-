@@ -1,10 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
-import { getNextPage, getPrevPage } from "../../actions/TrendingActions";
+import { getNextPageTV, getPrevPageTV } from "../../actions/SearchAction";
 
-const PaginateLinks = ({
-  getNextPage,
-  getPrevPage,
+const TvSearchPaginate = ({
+  query,
+  getNextPageTV,
+  getPrevPageTV,
   total_pages,
   page,
   match,
@@ -13,10 +14,10 @@ const PaginateLinks = ({
   let nextPage = page + 1;
   let prevPage = page - 1;
   const nextPageClick = () => {
-    getNextPage(nextPage);
+    getNextPageTV(query, nextPage);
   };
   const prevPageClick = () => {
-    getPrevPage(prevPage);
+    getPrevPageTV(query, prevPage);
   };
   if (page === 1) {
     return (
@@ -47,4 +48,6 @@ const PaginateLinks = ({
   );
 };
 
-export default connect(null, { getNextPage, getPrevPage })(PaginateLinks);
+export default connect(null, { getNextPageTV, getPrevPageTV })(
+  TvSearchPaginate
+);

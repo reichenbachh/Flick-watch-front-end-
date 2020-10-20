@@ -12,8 +12,13 @@ export const CLEAR_STATE = "CLEAR_STATE";
 export const GET_NEXT_PAGE = "GET_NEXT_PAGE";
 export const GET_PREV_PAGE = "GET_PREV_PAGE";
 export const CLEAR_ERROR = "CLEAR_ERROR";
+export const GET_MOVIE_NEXT_PAGE = "GET_MOVIE_NEXT_PAGE";
+export const GET_MOVIE_PREV_PAGE = "GET_MOVIE_PREV_PAGE";
+export const GET_TV_NEXT_PAGE = "GET_TV_NEXT_PAGE";
+export const GET_TV_PREV_PAGE = "GET_TV_PREV_PAGE";
 
 //Auth types
+export const AUTH_LOADING = "AUTH_LOADING";
 export const RESET_SUCESS = "RESET_SUCESS";
 export const RESET_FAILED = "RESET_FAILED";
 export const RESET_PASS_SUCESS = "RESET_PASS_SUCESS";
@@ -28,5 +33,6 @@ export const REGISTER_FAILED = "REGISTER_FAILED";
 export const REGISTER_USER = "REGISTER_USER";
 
 //Other Actions
+export const SET_SEARCH_LOADING = "SET_SEARCH_LOADING";
 export const SEARCH_SUCESS = "SEARCH_SUCESS";
 export const SEARCH_FAILED = "SEARCH_FAILED";

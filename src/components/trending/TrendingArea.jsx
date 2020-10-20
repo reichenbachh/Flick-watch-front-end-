@@ -3,7 +3,11 @@ import { connect } from "react-redux";
 import Card from "../layout/Card";
 import PaginateLinks from "../layout/PaginateLinks";
 import Nav from "../layout/Nav";
-import { getTrending } from "../../actions/TrendingActions";
+import {
+  getTrending,
+  getNextPage,
+  getPrevPage,
+} from "../../actions/TrendingActions";
 import { loadUser } from "../../actions/authActions";
 import Preloader from "../layout/Preloader";
 
@@ -29,6 +33,7 @@ const TrendingArea = ({
       </div>
     );
   } else {
+    let { total_pages, page } = trending;
     return (
       <div id='trending_area'>
         <Nav />
@@ -42,7 +47,12 @@ const TrendingArea = ({
             <Card data={data} key={data.id} />
           ))}
         </div>
-        <PaginateLinks />
+        <PaginateLinks
+          total_pages={total_pages}
+          page={page}
+          getNextPage={getNextPage}
+          getPrevPage={getPrevPage}
+        />
       </div>
     );
   }

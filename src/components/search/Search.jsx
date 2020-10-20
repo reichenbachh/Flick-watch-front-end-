@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import Nav from "../layout/Nav";
-import { searchFlick } from "../../actions/SearchAction";
+import { searchFlick, setLoading } from "../../actions/SearchAction";
+import MovieSearchPaginate from "../layout/MovieSearchPaginate";
+import TvSearchPaginate from "../layout/TvSearchPaginate";
+import MoviesScrollCard from "../layout/MovieScrollCard";
+import ShowScrollCard from "../layout/ShowScrollCard";
 import Preloader from "../layout/Preloader";
 import {
   ToastsContainer,
@@ -10,42 +14,43 @@ import {
 } from "react-toasts";
 
 const Search = ({
-  search: { error, loading, searchData, totalPages },
+  search: { error, loading, tvSearchData, movieSearchData, query },
   searchFlick,
 }) => {
   const [searchState, setSearchState] = useState("");
-  const [radioState, setRadioState] = useState("");
+  const [activeLinkState, setActiveLinkState] = useState("movies");
 
-  const handleRadio = (e) => {
-    setRadioState(e.target.value);
-  };
   const onChange = (e) => {
     setSearchState(e.target.value);
+  };
+
+  const switchToTv = () => {
+    setActiveLinkState("series");
+  };
+  const switchToMovies = () => {
+    setActiveLinkState("movies");
   };
   const onSubmitSearch = () => {
     if (searchState === "") {
       ToastsStore.error("Please fill the search field");
-    } else if (radioState === "") {
-      ToastsStore.error("Please choose a category,movies or tv shows");
     } else {
-      searchFlick(searchState, radioState);
+      setLoading();
+      searchFlick(searchState);
     }
   };
 
-  if (loading) {
-    return (
-      <div id='trending_area_loader'>
-        <div className='title'>
-          <div className='content'>
-            <Preloader />
-          </div>
-        </div>
-      </div>
-    );
-  }
-
+  const submitOnEnter = (e) => {
+    if (e.key === "Enter") {
+      if (searchState === "") {
+        ToastsStore.error("Please fill the search field");
+      } else {
+        setLoading();
+        searchFlick(searchState);
+      }
+    }
+  };
   return (
-    <div className='search-area'>
+    <div onKeyPress={submitOnEnter} className='search-area'>
       <Nav />
       <div className='search-wrapper'>
         <div className='search_box'>
@@ -55,36 +60,69 @@ const Search = ({
           </a>
         </div>
         <div className='filter-options'>
-          <div className='radio'>
-            <input
-              type='radio'
-              onChange={handleRadio}
-              name='radioSelect'
-              id='Movies'
-              value='movie'
-            />
-            <label htmlFor='Movies'>Movies</label>
+          <div className='movies-tab'>
+            {activeLinkState === "movies" ? (
+              <a href='#!' className='active' onClick={switchToMovies}>
+                Movies
+              </a>
+            ) : (
+              <a href='#!' onClick={switchToMovies}>
+                Movies
+              </a>
+            )}
           </div>
-          <div className='radio'>
-            <input
-              type='radio'
-              onChange={handleRadio}
-              name='radioSelect'
-              id='Tv Shows'
-              value='tv'
-            />
-            <label htmlFor='Tv Shows'>Tv Shows</label>
+          <div className='tv-tab'>
+            {activeLinkState === "series" ? (
+              <a href='#!' className='active' onClick={switchToTv}>
+                Shows
+              </a>
+            ) : (
+              <a href='#!' onClick={switchToTv}>
+                Shows
+              </a>
+            )}
           </div>
         </div>
       </div>
-      {searchData ? (
-        <div className='search-content'>
-          {searchData.results.map((data) => (
-            <p>data.original_title</p>
-          ))}
-        </div>
-      ) : null}
-      {totalPages === 0 ? <h1>No results</h1> : null}
+      <div className='search-page-content'>
+        {loading && (
+          <div className='search-preloader'>
+            <Preloader />
+          </div>
+        )}
+        {activeLinkState === "movies" && movieSearchData ? (
+          <div>
+            <div className='searh-content'>
+              {movieSearchData.results.map((data) => (
+                <div className='search-cards'>
+                  <MoviesScrollCard data={data} key={data.id} />
+                </div>
+              ))}
+            </div>
+            <MovieSearchPaginate
+              query={query}
+              page={movieSearchData.page}
+              total_pages={movieSearchData.total_pages}
+            />
+          </div>
+        ) : null}
+        {activeLinkState === "series" && tvSearchData ? (
+          <div>
+            <div className='searh-content'>
+              {tvSearchData.results.map((data) => (
+                <div className='search-cards'>
+                  <ShowScrollCard data={data} key={data.id} />
+                </div>
+              ))}
+            </div>
+            <TvSearchPaginate
+              query={query}
+              page={tvSearchData.page}
+              total_pages={tvSearchData.total_pages}
+            />
+          </div>
+        ) : null}
+      </div>
       <ToastsContainer
         position={ToastsContainerPosition.TOP_RIGHT}
         store={ToastsStore}

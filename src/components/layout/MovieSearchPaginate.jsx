@@ -1,22 +1,23 @@
 import React from "react";
 import { connect } from "react-redux";
-import { getNextPage, getPrevPage } from "../../actions/TrendingActions";
+import { getNextPageMovie, getPrevPageMovie } from "../../actions/SearchAction";
 
-const PaginateLinks = ({
-  getNextPage,
-  getPrevPage,
+const MovieSearchPaginate = ({
+  query,
+  getNextPageMovie,
+  getPrevPageMovie,
   total_pages,
   page,
   match,
 }) => {
-  console.log(match);
+  console.log(page, total_pages);
   let nextPage = page + 1;
   let prevPage = page - 1;
   const nextPageClick = () => {
-    getNextPage(nextPage);
+    getNextPageMovie(query, nextPage);
   };
   const prevPageClick = () => {
-    getPrevPage(prevPage);
+    getPrevPageMovie(query, prevPage);
   };
   if (page === 1) {
     return (
@@ -47,4 +48,6 @@ const PaginateLinks = ({
   );
 };
 
-export default connect(null, { getNextPage, getPrevPage })(PaginateLinks);
+export default connect(null, { getNextPageMovie, getPrevPageMovie })(
+  MovieSearchPaginate
+);

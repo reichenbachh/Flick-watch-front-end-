@@ -11,7 +11,6 @@ const SimilarScrollCardShow = ({ data }) => {
     original_name,
     id,
   } = data;
-  console.log(data.length);
   return (
     <Link to={`/showDetails/${id}`}>
       {" "}

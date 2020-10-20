@@ -1,4 +1,5 @@
 import {
+  AUTH_LOADING,
   REGISTER_SUCCESS,
   REGISTER_FAILED,
   CLEAR_ERROR,
@@ -158,6 +159,13 @@ export const resetPassword = (FormData, resetToken) => async (dispatch) => {
     });
   }
 };
+
+export const setLoading = () => {
+  return {
+    type: AUTH_LOADING,
+  };
+};
+
 export const clearError = () => {
   return {
     type: CLEAR_ERROR,

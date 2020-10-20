@@ -22,7 +22,7 @@ const SeasonCardSingle = ({ seasonInfo }) => {
         <div className='season-info-upper'>
           <h4>{name}</h4>
           <p>
-            {air_date.split("-")[0]} | {episode_count} episodes{" "}
+            {air_date && air_date.split("-")[0]} | {episode_count} episodes{" "}
           </p>
         </div>
         <div className='season-info-lower'>
