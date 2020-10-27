@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { useMediaQuery } from "react-responsive";
 import ReactTooltip from "react-tooltip";
 import TrailerModal from "./TrailerModal";
@@ -6,7 +6,14 @@ import "react-responsive-modal/styles.css";
 import { Modal } from "react-responsive-modal";
 import no_image from "../../assets/no_image.png";
 
-const DetailsCard = ({ path, details, modal, onOpenModal, onCloseModal }) => {
+const DetailsCard = ({
+  path,
+  details,
+  modal,
+  onOpenModal,
+  onCloseModal,
+  user,
+}) => {
   const isDesktopOrLaptop = useMediaQuery({
     query: "(min-width: 650px)",
   });
@@ -25,6 +32,7 @@ const DetailsCard = ({ path, details, modal, onOpenModal, onCloseModal }) => {
     poster_path,
     backdrop_path,
   } = details;
+  console.log(user);
   return (
     <div>
       {isDesktopOrLaptop && (
@@ -82,14 +90,32 @@ const DetailsCard = ({ path, details, modal, onOpenModal, onCloseModal }) => {
                 <p>{overview}</p>
               </div>
               <div className='options'>
-                <a
-                  target='_blank'
-                  rel='noopener noreferrer'
-                  data-tip='Track flick'
-                  href={homepage}
-                >
-                  <i className='fas fa-plus '></i>
-                </a>
+                {user ? (
+                  <Fragment>
+                    {" "}
+                    <a
+                      target='_blank'
+                      rel='noopener noreferrer'
+                      data-tip='Track this flick'
+                      href={homepage}
+                    >
+                      <i className='fas fa-plus '></i>
+                    </a>
+                  </Fragment>
+                ) : (
+                  <Fragment>
+                    {" "}
+                    <a
+                      target='_blank'
+                      rel='noopener noreferrer'
+                      data-tip='login to track this flick'
+                      href={homepage}
+                    >
+                      <i className='fas fa-plus '></i>
+                    </a>
+                  </Fragment>
+                )}
+
                 <ReactTooltip />
                 <a onClick={onOpenModal} data-tip='watch trailer'>
                   <i className='fas fa-play '></i>

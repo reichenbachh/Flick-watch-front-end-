@@ -5,6 +5,7 @@ import TrendingReducer from "./TrendingReducer";
 import MovieReducer from "./MovieReducer";
 import TvShowReducer from "./TvShowReducer";
 import searchReducer from "./searchReducer";
+import TrackedFlickReducer from "./TrackedFlickReducer";
 
 export default combineReducers({
   auth: authReducer,
@@ -12,4 +13,5 @@ export default combineReducers({
   movie: MovieReducer,
   tvShow: TvShowReducer,
   search: searchReducer,
+  flickList: TrackedFlickReducer,
 });

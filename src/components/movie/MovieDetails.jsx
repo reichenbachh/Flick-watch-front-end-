@@ -11,6 +11,7 @@ import Details from "../layout/Details";
 
 const MovieDetails = ({
   movie: { details, trailer, similar },
+  auth: { user },
   loading,
   fetchMovieDetails,
   clearState,
@@ -48,6 +49,7 @@ const MovieDetails = ({
     <div className='movie-details'>
       <Nav />
       <DetailsCard
+        user={user}
         path={path}
         modal={modal}
         onOpenModal={onOpenModal}
@@ -84,6 +86,7 @@ const MovieDetails = ({
 
 const mapStateToProps = (state) => ({
   movie: state.movie,
+  auth: state.auth,
 });
 export default connect(mapStateToProps, { fetchMovieDetails, clearState })(
   MovieDetails

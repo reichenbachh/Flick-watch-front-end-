@@ -1,9 +1,9 @@
-import React, { useState, Fragment } from "react";
+import React, { useState } from "react";
 import { slide as Menu } from "react-burger-menu";
 import { Link } from "react-router-dom";
 
 import BurgerNavAuth from "./BurgerNavAuth";
-const BurgerNav = ({ isAuthenticated, user }) => {
+const BurgerNav = ({ isAuthenticated, user, logoutUser }) => {
   const showSettings = (event) => {
     event.preventDefault();
   };
@@ -19,7 +19,7 @@ const BurgerNav = ({ isAuthenticated, user }) => {
   };
 
   if (isAuthenticated && user) {
-    return <BurgerNavAuth />;
+    return <BurgerNavAuth logoutUser={logoutUser} />;
   } else {
     return (
       <Menu right isOpen={openState.isOPen} onStateChange={closeMenu}>

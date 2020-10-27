@@ -50,11 +50,6 @@ const Card = ({ data }) => {
               <p>
                 <span className='rate'>{original_language}</span>
               </p>
-              <p>
-                <span>
-                  <i className='fas fa-plus'></i>
-                </span>
-              </p>
             </div>
           </div>
         </div>
@@ -88,11 +83,6 @@ const Card = ({ data }) => {
               </p>
               <p>
                 <span className='rate'>{original_language}</span>
-              </p>
-              <p>
-                <span>
-                  <i className='fas fa-plus'></i>
-                </span>
               </p>
             </div>
           </div>

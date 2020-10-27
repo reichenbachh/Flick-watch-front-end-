@@ -1,12 +1,13 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
+import { logoutUser } from "../../actions/authActions";
 import BurgerNav from "./BurgerNav";
 import { useMediaQuery } from "react-responsive";
 import { Link } from "react-router-dom";
 import LOGOw from "../../assets/LOGOw.png";
 import DropDownMenu from "./DropDownMenu";
 
-const Nav = ({ auth: { isAuthenticated, user } }) => {
+const Nav = ({ auth: { isAuthenticated, user }, logoutUser }) => {
   const isDesktopOrLaptop = useMediaQuery({
     query: "(min-width: 1224px)",
   });
@@ -60,7 +61,11 @@ const Nav = ({ auth: { isAuthenticated, user } }) => {
               </Link>
             </div>
             <div className='menu'>
-              <BurgerNav isAuthenticated={isAuthenticated} user={user} />
+              <BurgerNav
+                isAuthenticated={isAuthenticated}
+                user={user}
+                logoutUser={logoutUser}
+              />
             </div>
           </div>
         </div>
@@ -73,4 +78,4 @@ const mapStateToProps = (state) => ({
   auth: state.auth,
 });
 
-export default connect(mapStateToProps)(Nav);
+export default connect(mapStateToProps, { logoutUser })(Nav);

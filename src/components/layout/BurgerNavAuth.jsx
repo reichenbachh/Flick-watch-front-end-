@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { slide as Menu } from "react-burger-menu";
 import { Link } from "react-router-dom";
 
-const AuthNav = () => {
+const AuthNav = ({ logoutUser }) => {
   const showSettings = (event) => {
     event.preventDefault();
   };
@@ -31,10 +31,15 @@ const AuthNav = () => {
       <Link id='contact' className='menu-item' to='/login'>
         profile
       </Link>
-      <Link id='contact' className='menu-item' to='/login'>
+      <Link id='contact' className='menu-item' to='/trackedFlicks'>
         Tracked Shows
       </Link>
-      <Link id='contact' className='menu-item' to='/login'>
+      <Link
+        id='contact'
+        onClick={() => logoutUser()}
+        className='menu-item'
+        to='/login'
+      >
         Logout
       </Link>
       <Link to='/search'>

@@ -9,6 +9,7 @@ import ShowsPage from "./components/shows/ShowsPage";
 import MovieDetails from "./components/movie/MovieDetails";
 import ShowDetails from "./components/shows/ShowDetails";
 import ResetPassword from "./components/ResetPassword";
+import TrackedFlicks from "./components/TrackedFlicks/TrackedFlicks";
 import {
   BrowserRouter as Router,
   Switch,
@@ -46,6 +47,7 @@ function App({ loadUser }) {
             component={ResetPassword}
           />
           <Route exact path='/search' component={Search} />
+          <Route exact path='/trackedFlicks' component={TrackedFlicks} />
         </Switch>
       </div>
     </Router>

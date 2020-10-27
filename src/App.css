@@ -498,7 +498,7 @@ span {
 }
 
 .bm-cross {
-  background: #bdc3c7;
+  background: var(--primary-color);
 }
 
 .bm-menu {
@@ -517,12 +517,13 @@ span {
 }
 
 .bm-overlay {
-  background: rgba(0, 0, 0, 0.8);
+  position: relative !important;
+  background: rgba(0, 0, 0, 0.8) !important ;
 }
 /* * ******************************************************
                Movie Details
 ******************************************************* * */
-
+.trackedFlicks-page,
 .movie-details,
 .search-area,
 .show-details {
@@ -895,8 +896,9 @@ span {
 }
 
 .searh-content {
+  padding-left: 1rem;
   display: flex;
-  justify-content: center;
+  /* justify-content: space-around; */
   flex-wrap: wrap;
 }
 
@@ -907,11 +909,34 @@ span {
 .active {
   color: var(--primary-color) !important;
 }
+/* * ******************************************************
+                  Tracked Flicks Styling
+******************************************************* * */
+.trackedFlicks-page {
+}
 
+.trackedFlicks-page .leading {
+  padding: 1rem;
+  text-align: center;
+}
+.leading span {
+  color: var(--primary-color);
+}
+.tracked-flick-options {
+  display: flex;
+  justify-content: center;
+}
+.tracked-flick-options div {
+  padding: 1rem;
+}
 /* ******************************************************
            Media Queries
 ******************************************************* */
 @media screen and (max-width: 1224px) {
+  .searh-content {
+    padding-left: 0;
+  }
+
   .search_box {
     width: 70%;
     position: relative;
@@ -1008,6 +1033,9 @@ span {
   }
 }
 @media screen and (max-width: 650px) {
+  .searh-content {
+    padding-left: 0;
+  }
   .search_box {
     width: 90%;
     position: relative;

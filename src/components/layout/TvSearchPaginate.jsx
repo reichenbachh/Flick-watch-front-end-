@@ -19,14 +19,8 @@ const TvSearchPaginate = ({
   const prevPageClick = () => {
     getPrevPageTV(query, prevPage);
   };
-  if (page === 1) {
-    return (
-      <div className='pag-links'>
-        <div className='nextBtn'>
-          <button onClick={nextPageClick}>Next</button>
-        </div>
-      </div>
-    );
+  if (total_pages === 1) {
+    return null;
   } else if (page === total_pages) {
     return (
       <div className='pag-links'>
