@@ -31,6 +31,9 @@ export default (state = initialState, action) => {
         message: action.payload.token,
       };
     case AUTH_SUCCESS:
+      if (!localStorage.getItem("id")) {
+        localStorage.setItem("id", action.payload.user._id);
+      }
       return {
         ...state,
         isAuthenticated: true,
@@ -63,6 +66,7 @@ export default (state = initialState, action) => {
         error: action.payload.data.error,
       };
     case LOG_OUT:
+      localStorage.removeItem("id");
       return {
         ...state,
         isAuthenticated: false,

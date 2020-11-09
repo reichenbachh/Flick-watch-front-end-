@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import { connect } from "react-redux";
 import { fetchMovieDetails, clearState } from "../../actions/MovieActions";
+import { trackFlick, clearFlickState } from "../../actions/TrackedFlickActions";
 
 import Preloader from "../layout/Preloader";
 import SimilarScrollCard from "../layout/SimilarScrollCard";
@@ -9,10 +10,19 @@ import Nav from "../layout/Nav";
 import DetailsCard from "../layout/DetailsCard";
 import Details from "../layout/Details";
 
+import {
+  ToastsContainer,
+  ToastsStore,
+  ToastsContainerPosition,
+} from "react-toasts";
+
 const MovieDetails = ({
   movie: { details, trailer, similar },
   auth: { user },
+  flickList: { message, error, success },
   loading,
+  trackFlick,
+  clearFlickState,
   fetchMovieDetails,
   clearState,
   match,
@@ -22,6 +32,17 @@ const MovieDetails = ({
     clearState();
     fetchMovieDetails(match.params.id);
   }, [match]);
+
+  useEffect(() => {
+    if (message) {
+      ToastsStore.success(message);
+      clearFlickState();
+    }
+    if (error) {
+      ToastsStore.success(error);
+      clearFlickState();
+    }
+  }, [message, error]);
   const [modal, setModalState] = useState(false);
 
   const onOpenModal = () => {
@@ -30,6 +51,19 @@ const MovieDetails = ({
 
   const onCloseModal = () => {
     setModalState(false);
+  };
+  const trackFlickHandler = async (e, payloadData) => {
+    e.preventDefault();
+    if (!user) {
+      ToastsStore.error("Please login to track flick");
+    }
+    let data = {
+      user: localStorage.getItem("id"),
+      payloadName: "movie",
+      payloadData: payloadData,
+    };
+
+    trackFlick(data);
   };
   if (loading === null || details === null || trailer === null) {
     return (
@@ -49,6 +83,7 @@ const MovieDetails = ({
     <div className='movie-details'>
       <Nav />
       <DetailsCard
+        trackFlickHandler={trackFlickHandler}
         user={user}
         path={path}
         modal={modal}
@@ -79,6 +114,10 @@ const MovieDetails = ({
         <div className='details'>
           <Details details={details} />
         </div>
+        <ToastsContainer
+          position={ToastsContainerPosition.TOP_RIGHT}
+          store={ToastsStore}
+        />
       </div>
     </div>
   );
@@ -87,7 +126,11 @@ const MovieDetails = ({
 const mapStateToProps = (state) => ({
   movie: state.movie,
   auth: state.auth,
+  flickList: state.flickList,
 });
-export default connect(mapStateToProps, { fetchMovieDetails, clearState })(
-  MovieDetails
-);
+export default connect(mapStateToProps, {
+  fetchMovieDetails,
+  clearFlickState,
+  clearState,
+  trackFlick,
+})(MovieDetails);

@@ -17,8 +17,11 @@ export const GET_MOVIE_PREV_PAGE = "GET_MOVIE_PREV_PAGE";
 export const GET_TV_NEXT_PAGE = "GET_TV_NEXT_PAGE";
 export const GET_TV_PREV_PAGE = "GET_TV_PREV_PAGE";
 
+// Persisiting tracked flicks types
 export const GET_TRACKED_FLICK_LIST = "GET_TRACKED_FLICK_LIST";
 export const FLICK_LIST_FETCH_FAILED = "FLICK_LIST_FETCH_FAILED=";
+export const TRACK_FLICK = "TRACK_FLICK";
+export const FLICK_ERROR = "FLICK_ERROR";
 
 //Auth types
 export const AUTH_LOADING = "AUTH_LOADING";
@@ -36,6 +39,8 @@ export const REGISTER_FAILED = "REGISTER_FAILED";
 export const REGISTER_USER = "REGISTER_USER";
 
 //Other Actions
+export const CLEAR_FLICK_STATE = "CLEAR_FLICK_STATE";
+export const FLICK_FETCH_LOADING = "FLICK_FETCH_LOADING";
 export const SET_SEARCH_LOADING = "SET_SEARCH_LOADING";
 export const SEARCH_SUCESS = "SEARCH_SUCESS";
 export const SEARCH_FAILED = "SEARCH_FAILED";

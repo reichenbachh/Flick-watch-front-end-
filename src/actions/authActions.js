@@ -96,6 +96,7 @@ export const loadUser = () => async (dispatch) => {
       "http://localhost:5000/flickApi/v1/auth/getMe",
       { withCredentials: true }
     );
+    console.log(res.data);
     dispatch({
       type: AUTH_SUCCESS,
       payload: res.data,

@@ -7,6 +7,7 @@ import { Modal } from "react-responsive-modal";
 import no_image from "../../assets/no_image.png";
 
 const DetailsCard = ({
+  trackFlickHandler,
   path,
   details,
   modal,
@@ -19,6 +20,8 @@ const DetailsCard = ({
   });
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 650px)" });
   const {
+    id,
+    original_language,
     genres,
     homepage,
     original_title,
@@ -32,7 +35,6 @@ const DetailsCard = ({
     poster_path,
     backdrop_path,
   } = details;
-  console.log(user);
   return (
     <div>
       {isDesktopOrLaptop && (
@@ -94,10 +96,19 @@ const DetailsCard = ({
                   <Fragment>
                     {" "}
                     <a
-                      target='_blank'
-                      rel='noopener noreferrer'
+                      onClick={(e) => {
+                        let payloadData = {
+                          name: original_title,
+                          tmdb_id: id,
+                          language: original_language,
+                          air_date: first_air_date,
+                          vote_average,
+                          poster_path,
+                          backdrop_path,
+                        };
+                        trackFlickHandler(e, payloadData);
+                      }}
                       data-tip='Track this flick'
-                      href={homepage}
                     >
                       <i className='fas fa-plus '></i>
                     </a>
@@ -106,10 +117,10 @@ const DetailsCard = ({
                   <Fragment>
                     {" "}
                     <a
-                      target='_blank'
-                      rel='noopener noreferrer'
                       data-tip='login to track this flick'
-                      href={homepage}
+                      onClick={(e) => {
+                        trackFlickHandler(e);
+                      }}
                     >
                       <i className='fas fa-plus '></i>
                     </a>
@@ -191,13 +202,26 @@ const DetailsCard = ({
                 <p>{overview}</p>
               </div>
               <div className='options'>
-                <a href='#!'>
+                <a
+                  onClick={(e) => {
+                    let payloadData = {
+                      name: original_title,
+                      tmdb_id: id,
+                      language: original_language,
+                      air_date: first_air_date,
+                      vote_average,
+                      poster_path,
+                      backdrop_path,
+                    };
+                    trackFlickHandler(e, payloadData);
+                  }}
+                >
                   <i className='fas fa-plus '></i>
                 </a>
                 <a onClick={onOpenModal}>
                   <i className='fas fa-play '></i>
                 </a>
-                <a target='_blank' rel='noopener noreferrer' href={homepage}>
+                <a onClick={(e) => trackFlickHandler(e)}>
                   <i className='fas fa-globe '></i>
                 </a>
               </div>

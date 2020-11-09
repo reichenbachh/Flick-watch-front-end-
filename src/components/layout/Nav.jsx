@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
 import BurgerNav from "./BurgerNav";
@@ -40,9 +40,9 @@ const Nav = ({ auth: { isAuthenticated, user }, logoutUser }) => {
                 </li>
                 <li>
                   {isAuthenticated && user ? (
-                    <a href='#!'>
+                    <div style={{ color: "white" }}>
                       <DropDownMenu userName={user.username} />
-                    </a>
+                    </div>
                   ) : (
                     <Link to='/login'>Sign Up</Link>
                   )}

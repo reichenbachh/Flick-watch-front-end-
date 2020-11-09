@@ -1,16 +1,32 @@
 import React, { useEffect } from "react";
 import Nav from "../layout/Nav";
+import Preloader from "../layout/Preloader";
 import { connect } from "react-redux";
 import { getFlickList } from "../../actions/TrackedFlickActions";
-import ShowScrollCard from "../layout/ShowScrollCard";
-import MovieScrollCard from "../layout/MovieScrollCard";
 
-const TrackedFlicks = ({ auth: { user }, getFlickList }) => {
+const TrackedFlicks = ({
+  getFlickList,
+  flickList: { flickListData, loading },
+}) => {
   useEffect(() => {
-    getFlickList(user.id);
-  }, [user]);
+    setTimeout(() => getFlickList(localStorage.getItem("id")), 1000);
+
+    //eslint-disable-next-line
+  }, []);
+  if (loading || !flickListData) {
+    return (
+      <div id='trending_area_loader'>
+        <div className='title'>
+          <div className='content'>
+            <Preloader />
+          </div>
+        </div>
+      </div>
+    );
+  }
   return (
     <div className='trackedFlicks-page'>
+      {console.log(flickListData)}
       <Nav />
       <div className='leading'>
         <h1>
@@ -22,7 +38,11 @@ const TrackedFlicks = ({ auth: { user }, getFlickList }) => {
         </div>
       </div>
 
-      <div className='trackedflicksArea'></div>
+      <div className='trackedflicksArea'>
+        {flickListData.message === "no tracked movies" ? (
+          <h1>You havent tracked any flicks</h1>
+        ) : null}
+      </div>
     </div>
   );
 };

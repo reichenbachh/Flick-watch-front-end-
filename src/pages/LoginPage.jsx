@@ -62,6 +62,15 @@ const LoginPage = ({
     setFormState({ ...formState, step: step - 1 });
   };
 
+  const validateUsername = (username) => {
+    const userNameRegex = /[a-z0-9_-]/;
+    return userNameRegex.test(username);
+  };
+
+  const validateEmail = (email) => {
+    const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return emailRegex.test(email);
+  };
   //Handles registration
   const sendRegisterReq = () => {
     let username = formState.userNameR;
@@ -70,18 +79,23 @@ const LoginPage = ({
     let passwordConfirm = formState.passwordConR;
     if (
       username === "" ||
-      email === "" ||
-      password === "" ||
-      passwordConfirm === ""
+      email === ""
+      // password === "" ||
+      // passwordConfirm === ""
     ) {
       ToastsStore.error("Please fill all the fields");
+    } else if (!validateEmail(email)) {
+      ToastsStore.error("The email entered is not valid");
+    } else if (!validateUsername(username)) {
+      ToastsStore.error(
+        "usernames cannot have special characters except hyphens and underscores"
+      );
     } else if (password !== passwordConfirm) {
       ToastsStore.error("Passwords do not match");
       return;
     } else {
       let userData = { username, email, password };
-
-      console.log(userData);
+      console.log(validateEmail(email), validateUsername(username));
       RegisterUser(userData);
     }
   };
@@ -94,11 +108,14 @@ const LoginPage = ({
     if (loginInput === "" || password === "") {
       ToastsStore.error("Please fill all fields");
     } else {
+      const userNameRegex = /^[a-z0-9_-]{3,15}$/;
       const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       //test input string with regex to check if its an email or username
       //@todo
       //find more suitable approcah
       const isEmail = emailRegex.exec(loginInput);
+      const isUserName = userNameRegex.exec(loginInput);
+
       if (isEmail) {
         let userData = { email: loginInput, password };
         loginUser(userData);

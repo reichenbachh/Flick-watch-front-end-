@@ -803,7 +803,8 @@ span {
   display: block;
 }
 .dropDownContent {
-  max-width: 115px;
+  max-width: 120px;
+  right: 10px;
   background: var(--tetiary-color);
   display: none;
   position: absolute;
@@ -822,8 +823,11 @@ span {
 }
 
 .dropDownContent ul li {
+  z-index: 10;
+  position: relative;
+  text-align: center;
+  font-size: 15px;
   display: block;
-  /* padding: 0.2; */
 }
 /* ******************************************************
            Search Area
@@ -913,6 +917,10 @@ span {
                   Tracked Flicks Styling
 ******************************************************* * */
 .trackedFlicks-page {
+}
+
+.trackedflicksArea h1 {
+  text-align: center;
 }
 
 .trackedFlicks-page .leading {
