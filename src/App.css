@@ -382,7 +382,8 @@ span {
   flex-wrap: wrap;
 }
 
-#trending_area .content {
+#trending_area .content,
+.tracked-flick-content {
   display: flex;
   flex-wrap: wrap;
   padding-left: 4rem;
@@ -920,6 +921,7 @@ span {
 }
 
 .trackedflicksArea h1 {
+  margin-top: 3rem;
   text-align: center;
 }
 

@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import no_image from "../../assets/no_image.png";
 
-const MovieScrollCard = ({ data }) => {
+const MovieScrollCard = ({ data, match }) => {
   const {
     id,
     media_type,
@@ -14,9 +14,9 @@ const MovieScrollCard = ({ data }) => {
     poster_path,
     name,
   } = data;
-
+  console.log(window.location.href);
   return (
-    <Link to={`/movieDetails/${id}`}>
+    <Link to={id ? `/movieDetails/${id}` : `/movieDetails/${data.tmdb_id}`}>
       <div className='Movie-card-scroll'>
         {poster_path ? (
           <div className='card-img'>
@@ -67,8 +67,15 @@ const MovieScrollCard = ({ data }) => {
               <span className='rate'>{vote_average}</span>/10
             </p>
             <p>
-              <span className='rate'>{original_language}</span>
+              <span className='rate'>
+                {original_language ? original_language : data.language}
+              </span>
             </p>
+            {window.location.href.includes("trackedFlicks") ? (
+              <p>
+                <i class='fas fa-trash fa-lg'></i>
+              </p>
+            ) : null}
           </div>
         </div>
       </div>

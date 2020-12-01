@@ -35,6 +35,7 @@ const DetailsCard = ({
     poster_path,
     backdrop_path,
   } = details;
+
   return (
     <div>
       {isDesktopOrLaptop && (
@@ -98,10 +99,10 @@ const DetailsCard = ({
                     <a
                       onClick={(e) => {
                         let payloadData = {
-                          name: original_title,
+                          name: original_title || original_name,
                           tmdb_id: id,
                           language: original_language,
-                          air_date: first_air_date,
+                          release_date: release_date || first_air_date,
                           vote_average,
                           poster_path,
                           backdrop_path,
@@ -205,10 +206,10 @@ const DetailsCard = ({
                 <a
                   onClick={(e) => {
                     let payloadData = {
-                      name: original_title,
+                      name: original_title || original_name,
                       tmdb_id: id,
                       language: original_language,
-                      air_date: first_air_date,
+                      air_date: first_air_date || release_date,
                       vote_average,
                       poster_path,
                       backdrop_path,

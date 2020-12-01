@@ -9,7 +9,7 @@ import {
 } from "../actions/types";
 const initialState = {
   flickListData: null,
-  loading: false,
+  loading: null,
   error: null,
   message: null,
   success: null,
@@ -18,31 +18,35 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case GET_TRACKED_FLICK_LIST:
+      console.log(action.payload);
       return {
         ...state,
-        flickListData: action.payload,
+        flickListData: action.payload.userflickList,
         loading: false,
+        message: action.payload.message,
       };
     case FLICK_LIST_FETCH_FAILED:
       return {
         ...state,
-        error: action.payload,
+        error: action.payload.error,
       };
     case FLICK_FETCH_LOADING:
       return {
+        ...state,
         loading: true,
       };
     case TRACK_FLICK:
       return {
         ...state,
+        loading: false,
         success: true,
         message: action.payload[0].message,
-        flickListData: { ...state.flickListData, ...action.payload[1] },
       };
     case FLICK_ERROR:
+      console.log(action.payload);
       return {
         ...state,
-        error: action.payload,
+        error: action.payload.data.error,
       };
     case CLEAR_FLICK_STATE:
       return {

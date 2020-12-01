@@ -39,7 +39,7 @@ const MovieDetails = ({
       clearFlickState();
     }
     if (error) {
-      ToastsStore.success(error);
+      ToastsStore.error(error);
       clearFlickState();
     }
   }, [message, error]);

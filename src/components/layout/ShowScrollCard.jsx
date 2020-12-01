@@ -16,7 +16,7 @@ const ScrollCard = ({ data }) => {
   } = data;
 
   return (
-    <Link to={`/showDetails/${id}`}>
+    <Link to={id ? `/showDetails/${id}` : `/showDetails/${data.tmdb_id}`}>
       <div className='Movie-card-scroll'>
         {poster_path ? (
           <div className='card-img'>

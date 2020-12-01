@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { getShowDetails, clearState } from "../../actions/TvShowActions";
+import {
+  ToastsContainer,
+  ToastsStore,
+  ToastsContainerPosition,
+} from "react-toasts";
 
+import { trackFlick, clearFlickState } from "../../actions/TrackedFlickActions";
 import Nav from "../layout/Nav";
 import DetailsCard from "../layout/DetailsCard";
 import Preloader from "../layout/Preloader";
@@ -12,6 +18,10 @@ import SimilarScrollCardShow from "../layout/SimilarScrollCardShow";
 
 const ShowDetails = ({
   match,
+  trackFlick,
+  clearFlickState,
+  flickList: { error, message },
+  auth: { user },
   tvShow: { loading, details, trailer, similar },
   getShowDetails,
   clearState,
@@ -21,6 +31,16 @@ const ShowDetails = ({
     getShowDetails(match.params.id);
   }, [match.params.id]);
 
+  useEffect(() => {
+    if (message) {
+      ToastsStore.success(message);
+      clearFlickState();
+    }
+    if (error) {
+      ToastsStore.error(error);
+      clearFlickState();
+    }
+  }, [message, error]);
   const [modal, setModalState] = useState(false);
 
   const onOpenModal = () => {
@@ -29,6 +49,19 @@ const ShowDetails = ({
 
   const onCloseModal = () => {
     setModalState(false);
+  };
+  const trackFlickHandler = async (e, payloadData) => {
+    e.preventDefault();
+    if (!user) {
+      ToastsStore.error("Please login to track flick");
+    }
+    let data = {
+      user: localStorage.getItem("id"),
+      payloadName: "show",
+      payloadData: payloadData,
+    };
+
+    trackFlick(data);
   };
   if (loading === null || details === null || trailer === null) {
     return (
@@ -44,10 +77,13 @@ const ShowDetails = ({
   const path = trailer.results.map((item) => {
     return item.key;
   });
+  console.log("yes");
   return (
     <div className='show-details'>
       <Nav />
       <DetailsCard
+        user={user}
+        trackFlickHandler={trackFlickHandler}
         path={path}
         modal={modal}
         onOpenModal={onOpenModal}
@@ -94,14 +130,23 @@ const ShowDetails = ({
           <DetailsShow details={details} />
         </div>
       </div>
+      <ToastsContainer
+        position={ToastsContainerPosition.TOP_RIGHT}
+        store={ToastsStore}
+      />
     </div>
   );
 };
 
 const mapStateToProps = (state) => ({
   tvShow: state.tvShow,
+  auth: state.auth,
+  flickList: state.flickList,
 });
 
-export default connect(mapStateToProps, { getShowDetails, clearState })(
-  ShowDetails
-);
+export default connect(mapStateToProps, {
+  getShowDetails,
+  clearState,
+  trackFlick,
+  clearFlickState,
+})(ShowDetails);

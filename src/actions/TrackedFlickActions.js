@@ -38,6 +38,7 @@ export const getFlickList = (user) => async (dispatch) => {
 
 export const trackFlick = (data) => async (dispatch) => {
   try {
+    dispatch(setLoading());
     const config = {
       withCredentials: true,
       headers: {
@@ -49,11 +50,10 @@ export const trackFlick = (data) => async (dispatch) => {
       data,
       config
     );
-    console.log(trackFlick.data);
-    console.log(trackFlick.status);
+
     dispatch({ type: TRACK_FLICK, payload: [trackFlick.data, data] });
+    dispatch(getFlickList(localStorage.getItem("id")));
   } catch (error) {
-    console.log(error);
     dispatch({ type: FLICK_ERROR, payload: error.response });
   }
 };
