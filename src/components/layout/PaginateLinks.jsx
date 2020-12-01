@@ -28,6 +28,14 @@ const PaginateLinks = ({
         </div>
       </div>
     );
+  } else if (page === 1) {
+    return (
+      <div className='pag-links'>
+        <div className='nextBtn'>
+          <button onClick={nextPageClick}>Next</button>
+        </div>
+      </div>
+    );
   }
   return (
     <div className='pag-links'>

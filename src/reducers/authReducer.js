@@ -1,4 +1,5 @@
 import {
+  AUTH_LOADING,
   REGISTER_SUCCESS,
   REGISTER_FAILED,
   CLEAR_ERROR,
@@ -24,11 +25,17 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    case AUTH_LOADING:
+      return {
+        ...state,
+        loading: true,
+      };
     case REGISTER_SUCCESS:
       return {
         ...state,
         isAuthenticated: true,
         message: action.payload.token,
+        loading: false,
       };
     case AUTH_SUCCESS:
       if (!localStorage.getItem("id")) {
@@ -57,6 +64,7 @@ export default (state = initialState, action) => {
         ...state,
         isAuthenticated: true,
         message: action.payload.data,
+        loading: false,
       };
     case LOGIN_FAILED:
       return {
@@ -75,20 +83,21 @@ export default (state = initialState, action) => {
         error: null,
       };
     case RESET_SUCESS:
-      console.log(action.payload);
       return {
         ...state,
         message: action.payload.message,
+        loading: false,
       };
     case RESET_FAILED:
-      console.log(action.payload.data.error);
       return {
         ...state,
         error: action.payload.data.error,
+        loading: false,
       };
     case RESET_PASS_SUCESS:
       return {
         ...state,
+        loading: false,
         // isAuthenticated: true,
       };
     case CLEAR_ERROR:

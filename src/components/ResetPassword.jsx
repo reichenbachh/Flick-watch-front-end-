@@ -6,7 +6,7 @@ import {
   ToastsContainerPosition,
 } from "react-toasts";
 import { resetPassword } from "../actions/authActions";
-const ResetPassword = ({ resetPassword, match }) => {
+const ResetPassword = ({ resetPassword, match, loading }) => {
   const [resetFormState, setResetFormState] = useState({
     emailResetPass: "",
     emailResetPassConfirm: "",
@@ -25,7 +25,6 @@ const ResetPassword = ({ resetPassword, match }) => {
       ToastsStore.error("Please fill all fields");
     } else {
       resetPassword({ password }, resetToken);
-      console.log(resetToken, { password });
     }
   };
   return (
@@ -53,11 +52,17 @@ const ResetPassword = ({ resetPassword, match }) => {
               required
             />
           </div>
-          <div className='submitPass'>
-            <button onClick={() => handleReset()} type='submit'>
-              Reset Password
-            </button>
-          </div>
+          {loading ? (
+            <div className='submitPass'>
+              <button type='submit'>...</button>
+            </div>
+          ) : (
+            <div className='submitPass'>
+              <button onClick={() => handleReset()} type='submit'>
+                Reset Password
+              </button>
+            </div>
+          )}
         </div>
       </div>
       <ToastsContainer

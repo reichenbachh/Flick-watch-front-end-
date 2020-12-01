@@ -4,7 +4,9 @@ import {
   SET_ERROR,
   GET_TV_SHOW_DETAILS,
   CLEAR_STATE,
+  GET_EPISODE_DETAILS,
 } from "./types";
+import { clearFlickState } from "./TrackedFlickActions";
 
 export const getTvShowData = () => async (dispatch) => {
   try {
@@ -49,9 +51,30 @@ export const getShowDetails = (id) => async (dispatch) => {
       payload: [showDetails.data, showTrailer.data, showSimilar.data],
     });
   } catch (error) {
+    console.log(error.response);
     dispatch({
       type: SET_ERROR,
       payload: error,
+    });
+  }
+};
+
+export const getShowEpisode = (seasonNum, id) => async (dispatch) => {
+  try {
+    //fetch details
+    dispatch(clearState());
+    const episodeDetails = await axios.get(
+      `https://api.themoviedb.org/3/tv/${id}/season/${seasonNum}?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US`
+    );
+
+    dispatch({
+      type: GET_EPISODE_DETAILS,
+      payload: episodeDetails.data,
+    });
+  } catch (error) {
+    dispatch({
+      type: SET_ERROR,
+      payload: error.response,
     });
   }
 };

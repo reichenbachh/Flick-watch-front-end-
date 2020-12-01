@@ -55,15 +55,16 @@ const MovieDetails = ({
   const trackFlickHandler = async (e, payloadData) => {
     e.preventDefault();
     if (!user) {
-      ToastsStore.error("Please login to track flick");
-    }
-    let data = {
-      user: localStorage.getItem("id"),
-      payloadName: "movie",
-      payloadData: payloadData,
-    };
+      return ToastsStore.error("Please login to track flick");
+    } else {
+      let data = {
+        user: localStorage.getItem("id"),
+        payloadName: "movie",
+        payloadData: payloadData,
+      };
 
-    trackFlick(data);
+      trackFlick(data);
+    }
   };
   if (loading === null || details === null || trailer === null) {
     return (

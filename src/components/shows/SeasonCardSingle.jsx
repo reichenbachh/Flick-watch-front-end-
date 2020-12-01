@@ -1,8 +1,10 @@
 import React from "react";
 import no_image from "../../assets/no_image.png";
+import { Link } from "react-router-dom";
 
-const SeasonCardSingle = ({ seasonInfo }) => {
+const SeasonCardSingle = ({ seasonInfo, id }) => {
   const {
+    match,
     poster_path,
     name,
     overview,
@@ -20,7 +22,10 @@ const SeasonCardSingle = ({ seasonInfo }) => {
       </div>
       <div className='seasons-card-info'>
         <div className='season-info-upper'>
-          <h4>{name}</h4>
+          <Link to={`/showDetailsSeason/${id}`}>
+            <h4>{name}</h4>
+          </Link>
+
           <p>
             {air_date && air_date.split("-")[0]} | {episode_count} episodes{" "}
           </p>

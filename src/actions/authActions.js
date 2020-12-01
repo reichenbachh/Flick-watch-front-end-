@@ -17,6 +17,7 @@ import axios from "axios";
 
 export const RegisterUser = (FormData) => async (dispatch) => {
   try {
+    dispatch(setLoading());
     const config = {
       withCredentials: true,
       headers: {
@@ -46,6 +47,7 @@ export const RegisterUser = (FormData) => async (dispatch) => {
 
 export const loginUser = (FormData) => async (dispatch) => {
   try {
+    dispatch(setLoading());
     const config = {
       withCredentials: true,
       headers: {
@@ -111,6 +113,7 @@ export const loadUser = () => async (dispatch) => {
 };
 export const sendResetEmail = (FormData) => async (dispatch) => {
   try {
+    dispatch(setLoading());
     const config = {
       headers: {
         "Content-Type": "application/json",
@@ -136,6 +139,7 @@ export const sendResetEmail = (FormData) => async (dispatch) => {
 
 export const resetPassword = (FormData, resetToken) => async (dispatch) => {
   try {
+    dispatch(setLoading());
     const config = {
       headers: {
         withCredentials: true,
@@ -147,7 +151,6 @@ export const resetPassword = (FormData, resetToken) => async (dispatch) => {
       FormData,
       config
     );
-    console.log(res.data);
     dispatch({
       type: RESET_PASS_SUCESS,
       payload: res.data,

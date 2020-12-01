@@ -1,5 +1,7 @@
 import React from "react";
+import Preloader from "../components/layout/Preloader";
 const Register = ({
+  loading,
   values,
   inputChange,
   nextStep,
@@ -59,11 +61,18 @@ const Register = ({
               />
             </div>
           </div>
-          <div className='submitBtn'>
-            <button onClick={onSubmit} type='submit'>
-              Register{" "}
-            </button>
-          </div>
+          {loading ? (
+            <div className='submitBtn'>
+              <button type='submit'>....</button>
+            </div>
+          ) : (
+            <div className='submitBtn'>
+              <button onClick={onSubmit} type='submit'>
+                Register{" "}
+              </button>
+            </div>
+          )}
+
           <div className='links'>
             <a href='#1' onClick={toLogin}>
               Log In?{" "}

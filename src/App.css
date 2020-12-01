@@ -524,6 +524,7 @@ span {
 /* * ******************************************************
                Movie Details
 ******************************************************* * */
+.season-details,
 .trackedFlicks-page,
 .movie-details,
 .search-area,
@@ -939,6 +940,17 @@ span {
 .tracked-flick-options div {
   padding: 1rem;
 }
+/* ******************************************************
+          Season Details
+******************************************************* */
+
+.season-content {
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 /* ******************************************************
            Media Queries
 ******************************************************* */

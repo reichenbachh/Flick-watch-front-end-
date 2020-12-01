@@ -1,7 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
 
-const Login = ({ values, inputChange, nextStep, prevStep, sendLoginReq }) => {
+const Login = ({
+  values,
+  inputChange,
+  nextStep,
+  prevStep,
+  sendLoginReq,
+  loading,
+}) => {
   const { userNameL, passwordL } = values;
   const toPassword = (e) => {
     nextStep();
@@ -38,15 +45,18 @@ const Login = ({ values, inputChange, nextStep, prevStep, sendLoginReq }) => {
               />
             </div>
           </div>
-          <div className='submitBtn'>
-            <button onClick={handleLogin} type='submit'>
-              login{" "}
-            </button>
-          </div>
-          {/* <div className='check'>
-            <input type='checkbox' />
-            <span>Remember me</span>
-          </div> */}
+          {loading ? (
+            <div className='submitBtn'>
+              <button type='submit'>...</button>
+            </div>
+          ) : (
+            <div className='submitBtn'>
+              <button onClick={handleLogin} type='submit'>
+                login{" "}
+              </button>
+            </div>
+          )}
+
           <div className='links'>
             <div>
               <a href='#!' onClick={toPassword}>

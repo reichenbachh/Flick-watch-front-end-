@@ -53,15 +53,16 @@ const ShowDetails = ({
   const trackFlickHandler = async (e, payloadData) => {
     e.preventDefault();
     if (!user) {
-      ToastsStore.error("Please login to track flick");
-    }
-    let data = {
-      user: localStorage.getItem("id"),
-      payloadName: "show",
-      payloadData: payloadData,
-    };
+      return ToastsStore.error("Please login to track flick");
+    } else {
+      let data = {
+        user: localStorage.getItem("id"),
+        payloadName: "show",
+        payloadData: payloadData,
+      };
 
-    trackFlick(data);
+      trackFlick(data);
+    }
   };
   if (loading === null || details === null || trailer === null) {
     return (
@@ -99,13 +100,20 @@ const ShowDetails = ({
             </h1>
             {details.seasons.length === 1 ? (
               <SeasonCardSingle
+                id={match.params.id}
                 seasonInfo={details.seasons}
                 key={details.seasons.id}
               />
             ) : (
               details.seasons.map((season, index) => {
                 if (details.seasons.length - 2 === index) {
-                  return <Seasons seasonInfo={season} key={season.id} />;
+                  return (
+                    <Seasons
+                      id={match.params.id}
+                      seasonInfo={season}
+                      key={season.id}
+                    />
+                  );
                 }
               })
             )}

@@ -16,6 +16,7 @@ export const GET_MOVIE_NEXT_PAGE = "GET_MOVIE_NEXT_PAGE";
 export const GET_MOVIE_PREV_PAGE = "GET_MOVIE_PREV_PAGE";
 export const GET_TV_NEXT_PAGE = "GET_TV_NEXT_PAGE";
 export const GET_TV_PREV_PAGE = "GET_TV_PREV_PAGE";
+export const GET_EPISODE_DETAILS = "GET_EPISODE_DETAILS";
 
 // Persisiting tracked flicks types
 export const GET_TRACKED_FLICK_LIST = "GET_TRACKED_FLICK_LIST";

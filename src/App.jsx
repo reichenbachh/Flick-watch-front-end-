@@ -4,6 +4,8 @@ import Home from "./pages/Home";
 import LoginArea from "./pages/LoginArea";
 import Search from "./components/search/Search";
 import TrendingArea from "./components/trending/TrendingArea";
+import SeasonDetails from "./components/shows/SeasonDetails";
+import EpisodeDetails from "./components/shows/EpisodeDetails";
 import MoviePage from "./components/movie/MoviePage";
 import ShowsPage from "./components/shows/ShowsPage";
 import MovieDetails from "./components/movie/MovieDetails";
@@ -48,6 +50,16 @@ function App({ loadUser }) {
           />
           <Route exact path='/search' component={Search} />
           <Route exact path='/trackedFlicks' component={TrackedFlicks} />
+          <Route
+            exact
+            path='/showDetailsSeason/:id'
+            component={SeasonDetails}
+          />
+          <Route
+            exact
+            path='/showDetailsEpisode/:seasonid/:episodeId/:seasonNum'
+            component={EpisodeDetails}
+          />
         </Switch>
       </div>
     </Router>

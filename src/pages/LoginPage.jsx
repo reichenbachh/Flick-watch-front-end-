@@ -16,7 +16,7 @@ import {
 
 const LoginPage = ({
   history,
-  auth: { isAuthenticated, error, message },
+  auth: { isAuthenticated, error, message, loading },
   ToastsStore,
   loginUser,
   RegisterUser,
@@ -150,6 +150,7 @@ const LoginPage = ({
       return (
         <div>
           <Register
+            loading={loading}
             handleRegisterError={handleRegisterError}
             isAuthenticated={isAuthenticated}
             sendRegisterReq={sendRegisterReq}
@@ -162,6 +163,7 @@ const LoginPage = ({
     case 1:
       return (
         <Login
+          loading={loading}
           sendLoginReq={sendLoginReq}
           inputChange={inputChange}
           prevStep={prevStep}
@@ -172,6 +174,7 @@ const LoginPage = ({
     case 2:
       return (
         <ForgetPassword
+          loading={loading}
           sendEmail={sendEmail}
           inputChange={inputChange}
           nextStep={nextStep}
