@@ -2,7 +2,6 @@ import React from "react";
 import ReactPlayer from "react-player";
 
 const TrailerModal = ({ path }) => {
-  console.log(path.length);
   if (path.length === 0) {
     return (
       <div className='trailer-wrapper'>

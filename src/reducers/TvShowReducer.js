@@ -2,7 +2,6 @@ import {
   GET_TVSHOW_DATA,
   SET_ERROR,
   GET_TV_SHOW_DETAILS,
-  GET_TV_SHOW_TRAILER,
   GET_EPISODE_DETAILS,
   CLEAR_STATE,
 } from "../actions/types";

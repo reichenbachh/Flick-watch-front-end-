@@ -10,7 +10,6 @@ const TvSearchPaginate = ({
   page,
   match,
 }) => {
-  console.log(match);
   let nextPage = page + 1;
   let prevPage = page - 1;
   const nextPageClick = () => {

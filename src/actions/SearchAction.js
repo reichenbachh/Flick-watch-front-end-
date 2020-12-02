@@ -23,7 +23,6 @@ export const searchFlick = (query) => async (dispatch) => {
       payload: [tvsearchRes.data, moviesearchRes.data, query],
     });
   } catch (error) {
-    console.log(error.response);
     dispatch({
       type: SEARCH_FAILED,
       payload: error.response,

@@ -78,7 +78,6 @@ const ShowDetails = ({
   const path = trailer.results.map((item) => {
     return item.key;
   });
-  console.log("yes");
   return (
     <div className='show-details'>
       <Nav />

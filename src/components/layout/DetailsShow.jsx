@@ -11,8 +11,6 @@ const DetailsShow = ({ details }) => {
     original_language,
     number_of_episodes,
     number_of_seasons,
-    last_episode_to_air,
-    next_episode_to_air,
     networks,
   } = details;
   const extractLangauages = (languages) => {

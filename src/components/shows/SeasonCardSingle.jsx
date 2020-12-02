@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 
 const SeasonCardSingle = ({ seasonInfo, id }) => {
   const {
-    match,
     poster_path,
     name,
     overview,

@@ -10,7 +10,6 @@ const MovieSearchPaginate = ({
   page,
   match,
 }) => {
-  console.log(page, total_pages);
   let nextPage = page + 1;
   let prevPage = page - 1;
   const nextPageClick = () => {

@@ -48,6 +48,7 @@ export const fetchMovieDetails = (movie_id) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: SET_ERROR,
+      payload: error.response,
     });
   }
 };

@@ -1,5 +1,4 @@
 import React from "react";
-import Preloader from "../components/layout/Preloader";
 const Register = ({
   loading,
   values,

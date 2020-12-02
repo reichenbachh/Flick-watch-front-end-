@@ -51,7 +51,6 @@ export const getShowDetails = (id) => async (dispatch) => {
       payload: [showDetails.data, showTrailer.data, showSimilar.data],
     });
   } catch (error) {
-    console.log(error.response);
     dispatch({
       type: SET_ERROR,
       payload: error,

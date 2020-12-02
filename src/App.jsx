@@ -21,7 +21,6 @@ import {
 import { loadUser } from "./actions/authActions";
 
 import "./App.css";
-import Nav from "./components/layout/Nav";
 
 function App({ loadUser }) {
   useEffect(() => {

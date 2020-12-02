@@ -30,14 +30,13 @@ export const RegisterUser = (FormData) => async (dispatch) => {
       FormData,
       config
     );
-    console.log(res.data);
+
     dispatch({
       type: REGISTER_SUCCESS,
       payload: res.data,
     });
     dispatch(loadUser());
   } catch (error) {
-    console.log(error.response);
     dispatch({
       type: REGISTER_FAILED,
       payload: error.response,
@@ -61,13 +60,11 @@ export const loginUser = (FormData) => async (dispatch) => {
       config
     );
 
-    console.log(res.data);
     dispatch({
       type: LOGIN_SUCCESS,
       payload: res.data,
     });
   } catch (error) {
-    console.log(error.response);
     dispatch({
       type: LOGIN_FAILED,
       payload: error.response,
@@ -77,19 +74,14 @@ export const loginUser = (FormData) => async (dispatch) => {
 
 export const logoutUser = () => async (dispatch) => {
   try {
-    const res = await axios.get(
-      "http://localhost:5000/flickApi/v1/auth/logout",
-      {
-        withCredentials: true,
-      }
-    );
-    console.log(res.data);
+    await axios.get("http://localhost:5000/flickApi/v1/auth/logout", {
+      withCredentials: true,
+    });
+
     dispatch({
       type: LOG_OUT,
     });
-  } catch (error) {
-    console.log(error.respon);
-  }
+  } catch (error) {}
 };
 
 export const loadUser = () => async (dispatch) => {
@@ -98,13 +90,12 @@ export const loadUser = () => async (dispatch) => {
       "http://localhost:5000/flickApi/v1/auth/getMe",
       { withCredentials: true }
     );
-    console.log(res.data);
+
     dispatch({
       type: AUTH_SUCCESS,
       payload: res.data,
     });
   } catch (error) {
-    console.log(error);
     dispatch({
       type: AUTH_FAILED,
       payload: error.response,
@@ -124,7 +115,6 @@ export const sendResetEmail = (FormData) => async (dispatch) => {
       FormData,
       config
     );
-    console.log(res.data);
     dispatch({
       type: RESET_SUCESS,
       payload: res.data,
@@ -156,7 +146,6 @@ export const resetPassword = (FormData, resetToken) => async (dispatch) => {
       payload: res.data,
     });
   } catch (error) {
-    console.log(error.response);
     dispatch({
       type: RESET_PASS_FAILED,
       payload: error.response,

@@ -4,7 +4,6 @@ import {
   FLICK_LIST_FETCH_FAILED,
   GET_TRACKED_FLICK_LIST,
   FLICK_FETCH_LOADING,
-  CLEAR_STATE,
   CLEAR_FLICK_STATE,
 } from "../actions/types";
 const initialState = {
@@ -18,7 +17,6 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case GET_TRACKED_FLICK_LIST:
-      console.log(action.payload);
       return {
         ...state,
         flickListData: action.payload.userflickList,
@@ -43,7 +41,6 @@ export default (state = initialState, action) => {
         message: action.payload[0].message,
       };
     case FLICK_ERROR:
-      console.log(action.payload);
       return {
         ...state,
         error: action.payload.data.error,

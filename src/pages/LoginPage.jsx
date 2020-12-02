@@ -68,7 +68,7 @@ const LoginPage = ({
   };
 
   const validateEmail = (email) => {
-    const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return emailRegex.test(email);
   };
   //Handles registration
@@ -95,7 +95,6 @@ const LoginPage = ({
       return;
     } else {
       let userData = { username, email, password };
-      console.log(validateEmail(email), validateUsername(username));
       RegisterUser(userData);
     }
   };
@@ -109,7 +108,7 @@ const LoginPage = ({
       ToastsStore.error("Please fill all fields");
     } else {
       const userNameRegex = /^[a-z0-9_-]{3,15}$/;
-      const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       //test input string with regex to check if its an email or username
       //@todo
       //find more suitable approcah
@@ -140,7 +139,6 @@ const LoginPage = ({
     if (error) {
       let errorMessage = error.split(":");
       ToastsStore.error(errorMessage[2]);
-      console.log(errorMessage);
     }
   };
 

@@ -48,7 +48,6 @@ const TrackedFlicks = ({
       </div>
     );
   } else {
-    console.log(flickListData.showList.length);
     return (
       <div className='trackedFlicks-page'>
         <Nav />

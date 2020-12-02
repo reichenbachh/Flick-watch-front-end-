@@ -10,7 +10,6 @@ import {
   LOG_OUT,
   RESET_FAILED,
   RESET_SUCESS,
-  RESET_PASS_FAILED,
   RESET_PASS_SUCESS,
 } from "../actions/types";
 
@@ -52,7 +51,6 @@ export default (state = initialState, action) => {
         isAuthenticated: null,
       };
     case REGISTER_FAILED:
-      console.log(action.payload);
       return {
         ...state,
         isAuthenticated: false,
