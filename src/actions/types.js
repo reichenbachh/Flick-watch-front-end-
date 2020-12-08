@@ -23,6 +23,7 @@ export const GET_TRACKED_FLICK_LIST = "GET_TRACKED_FLICK_LIST";
 export const FLICK_LIST_FETCH_FAILED = "FLICK_LIST_FETCH_FAILED=";
 export const TRACK_FLICK = "TRACK_FLICK";
 export const FLICK_ERROR = "FLICK_ERROR";
+export const REMOVE_FLICK = " REMOVE_FLICK";
 
 //Auth types
 export const AUTH_LOADING = "AUTH_LOADING";

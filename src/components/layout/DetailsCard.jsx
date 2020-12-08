@@ -222,7 +222,7 @@ const DetailsCard = ({
                 <a onClick={onOpenModal}>
                   <i className='fas fa-play '></i>
                 </a>
-                <a onClick={(e) => trackFlickHandler(e)}>
+                <a target='_blank' rel='noopener noreferrer' href={homepage}>
                   <i className='fas fa-globe '></i>
                 </a>
               </div>

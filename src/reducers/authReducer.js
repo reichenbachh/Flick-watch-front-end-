@@ -46,16 +46,18 @@ export default (state = initialState, action) => {
         user: action.payload.user,
       };
     case AUTH_FAILED:
+      console.log(action.payload);
       return {
         ...state,
         isAuthenticated: null,
       };
     case REGISTER_FAILED:
+      console.log(action.payload.data);
       return {
         ...state,
+        error: action.payload.data.error,
         isAuthenticated: false,
         loading: false,
-        error: action.payload.data.error,
       };
     case LOGIN_SUCCESS:
       return {

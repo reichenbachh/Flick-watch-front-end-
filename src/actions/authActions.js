@@ -26,7 +26,7 @@ export const RegisterUser = (FormData) => async (dispatch) => {
     };
 
     const res = await axios.post(
-      `http://localhost:5000/flickApi/v1/auth/register`,
+      `https://flickwatch.herokuapp.com/auth/register`,
       FormData,
       config
     );
@@ -55,7 +55,7 @@ export const loginUser = (FormData) => async (dispatch) => {
     };
 
     const res = await axios.post(
-      "http://localhost:5000/flickApi/v1/auth/login",
+      "https://flickwatch.herokuapp.com/auth/login",
       FormData,
       config
     );
@@ -74,7 +74,7 @@ export const loginUser = (FormData) => async (dispatch) => {
 
 export const logoutUser = () => async (dispatch) => {
   try {
-    await axios.get("http://localhost:5000/flickApi/v1/auth/logout", {
+    await axios.get("https://flickwatch.herokuapp.com/auth/logout", {
       withCredentials: true,
     });
 
@@ -86,10 +86,9 @@ export const logoutUser = () => async (dispatch) => {
 
 export const loadUser = () => async (dispatch) => {
   try {
-    const res = await axios.get(
-      "http://localhost:5000/flickApi/v1/auth/getMe",
-      { withCredentials: true }
-    );
+    const res = await axios.get("https://flickwatch.herokuapp.com/auth/getMe", {
+      withCredentials: true,
+    });
 
     dispatch({
       type: AUTH_SUCCESS,
@@ -111,7 +110,7 @@ export const sendResetEmail = (FormData) => async (dispatch) => {
       },
     };
     const res = await axios.post(
-      "http://localhost:5000/flickApi/v1/auth/sendResetMail",
+      "https://flickwatch.herokuapp.com/auth/sendResetMail",
       FormData,
       config
     );
@@ -137,7 +136,7 @@ export const resetPassword = (FormData, resetToken) => async (dispatch) => {
       },
     };
     const res = await axios.put(
-      `http://localhost:5000/flickApi/v1/auth/resetPassword/${resetToken}`,
+      `https://flickwatch.herokuapp.com/auth/resetPassword/${resetToken}`,
       FormData,
       config
     );

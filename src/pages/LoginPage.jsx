@@ -79,13 +79,11 @@ const LoginPage = ({
     let passwordConfirm = formState.passwordConR;
     if (
       username === "" ||
-      email === ""
-      // password === "" ||
-      // passwordConfirm === ""
+      email === "" ||
+      password === "" ||
+      passwordConfirm === ""
     ) {
       ToastsStore.error("Please fill all the fields");
-    } else if (!validateEmail(email)) {
-      ToastsStore.error("The email entered is not valid");
     } else if (!validateUsername(username)) {
       ToastsStore.error(
         "usernames cannot have special characters except hyphens and underscores"

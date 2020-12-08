@@ -2,19 +2,21 @@ import React, { useEffect, useState } from "react";
 import Nav from "../layout/Nav";
 import Preloader from "../layout/Preloader";
 import { connect } from "react-redux";
-import { getFlickList } from "../../actions/TrackedFlickActions";
+import { getFlickList, removeFlick } from "../../actions/TrackedFlickActions";
 import ShowScrollCard from "../layout/ShowScrollCard";
 import MovieScrollCard from "../layout/MovieScrollCard";
 
 const TrackedFlicks = ({
   getFlickList,
+  removeFlick,
   flickList: { loading, flickListData, message },
 }) => {
   useEffect(() => {
     getFlickList(localStorage.getItem("id"));
     //eslint-disable-next-line
-  }, []);
+  }, [message]);
   const [activeLinkState, setActiveLinkState] = useState("movies");
+
   const switchToTv = () => {
     setActiveLinkState("series");
   };
@@ -79,16 +81,21 @@ const TrackedFlicks = ({
               )}
             </div>
           </div>
-          {flickListData.movieList.length &&
-          (activeLinkState === "movies") === 0 ? (
+          {flickListData.movieList.length === 0 &&
+          activeLinkState === "movies" ? (
             <div className='trackedflicksArea '>
-              <h1>You havent Tracked any Movies or Shows</h1>
+              <h1>You havent Tracked any Movies</h1>
             </div>
           ) : (
             <div className='tracked-flick-content'>
               {activeLinkState === "movies"
                 ? flickListData.movieList.map((data) => (
-                    <MovieScrollCard key={data._id} data={data} />
+                    <MovieScrollCard
+                      flick_id={data._id}
+                      key={data._id}
+                      data={data}
+                      removeFlick={removeFlick}
+                    />
                   ))
                 : null}
             </div>
@@ -102,7 +109,12 @@ const TrackedFlicks = ({
             <div className='tracked-flick-content'>
               {activeLinkState === "series"
                 ? flickListData.showList.map((data) => (
-                    <ShowScrollCard key={data._id} data={data} />
+                    <ShowScrollCard
+                      flick_id={data._id}
+                      key={data._id}
+                      removeFlick={removeFlick}
+                      data={data}
+                    />
                   ))
                 : null}
             </div>
@@ -117,4 +129,6 @@ const mapStateToProps = (state) => ({
   flickList: state.flickList,
 });
 
-export default connect(mapStateToProps, { getFlickList })(TrackedFlicks);
+export default connect(mapStateToProps, { getFlickList, removeFlick })(
+  TrackedFlicks
+);

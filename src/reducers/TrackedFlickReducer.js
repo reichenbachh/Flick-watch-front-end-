@@ -5,6 +5,7 @@ import {
   GET_TRACKED_FLICK_LIST,
   FLICK_FETCH_LOADING,
   CLEAR_FLICK_STATE,
+  REMOVE_FLICK,
 } from "../actions/types";
 const initialState = {
   flickListData: null,
@@ -39,6 +40,11 @@ export default (state = initialState, action) => {
         loading: false,
         success: true,
         message: action.payload[0].message,
+      };
+    case REMOVE_FLICK:
+      return {
+        ...state,
+        message: action.payload.message,
       };
     case FLICK_ERROR:
       return {
